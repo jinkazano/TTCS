@@ -1,0 +1,94 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#swap{
+	width: 100%;
+
+}
+#header{
+	background-color: lightblue;
+	height: 150px;
+	color: red;
+}
+#righta{
+	background-color: #0FF390;
+	float: right;
+	width: 80%;
+  height: 100%;
+
+}
+#main{
+    margin-left: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    
+}
+#footer{
+	background-color: #6ED9DA;
+	height: 50px;
+	clear: both;
+	
+}
+#login{
+	width: 300px;
+	margin-left: 500px;
+	margin-top: 300px;
+        
+}
+form{
+  padding-left: 330px;
+}
+
+//code sidebar
+
+ul#menu2, ul#menu2 ul.sub-menu2{
+    padding: 0;
+    margin: 0;
+    
+}
+#menu2{
+    float: left;
+     width: 20%;
+     height: 100%
+}
+#menu2 ul {
+  background: #8AD385;
+  
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+}
+#menu2 li {
+  
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 1em;
+}
+#menu2 li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  display: block;
+}
+#menu2 li:hover {
+  background: #CDE2CD;
+}
+
+
+#menu2 li {
+ position: relative;
+}
+#menu2 li .sub-menu2 {
+ position: absolute;
+ left: 20%;
+
+display: none;
+}
+.sub-menu2{
+    width: 20%;
+}
+#menu2 li:hover .sub-menu2 {
+ display: block;
+}
