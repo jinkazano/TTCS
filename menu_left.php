@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
     <?php if ($permission == 'admin') {
         ?>
 
-    <!-- Nav Item - Dành cho giảng viên -->
+    <!-- Nav Item -  giảng viên dashboard -->
 
 
     <li class="nav-item active">
@@ -43,7 +43,7 @@ if (isset($_SESSION['username'])) {
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-    <!-- Nav Item - Dành cho sinh viên -->
+    <!-- Nav Item - Sinh viên dashboard -->
     <li class="nav-item active">
         <a  class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseStudent" aria-expanded="true" aria-controls="collapseStudent">
             <i class="fas fa-book-reader"></i>
@@ -55,7 +55,7 @@ if (isset($_SESSION['username'])) {
         aria-labelledby="headingStudent"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
-            <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
+            <a class="collapse-item" href="admin-dang-ki-nhom.php">Đăng kí nhóm</a>
             <a class="collapse-item" href="danh-sach-nhom.php">Danh sách đăng kí nhóm</a>
             <a class="collapse-item" href="dk-detai.php.php">Đăng kí đề tài</a>
           </div>
