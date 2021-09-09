@@ -26,52 +26,54 @@ session_start();
                             <div class="card-body">
                                 <h3 class="text-center text-uppercase">Đăng kí nhóm</h3>
                                 <form action="" method="post">
-                                    <label for="">Nhóm trưởng:</label>
-                                    <input type="text" class="form-control" name="sv1" required="">
-                                    <label for="">Thành viên thứ 2:</label >
-                                    <input type="text" class="form-control" name="sv2">
-                                    <label for="">Thành viên thứ 3:</label>
-                                    <input type="text" class="form-control" name="sv3">
+                                    
                                     <div class="chucnang mt-3">
                                         <button class=" m-2 btn btn-success" name="dangky"><i class="far fa-edit"></i> Đăng kí</button>
-                                        <button class="m-2 btn btn-danger" name="reset"><i class="fas fa-sync-alt"></i> Nhập lại</button>
+                                        
                                     </div>
                                     <?php 
+
                                     if (isset($_POST['dangky'])) {
                                         # code...
-                                        $sv1 = $_POST['sv1'];
-                                        $sv2 = $_POST['sv2'];
-                                        $sv3 = $_POST['sv3'];
+                                        $sv = $_SESSION['username'];
+                                        
                                         $check=0;
-                                        $checksv1=mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv1' or idsv2='$sv1' or idsv3='$sv1'"));
-                                        if ($checksv1[0]!='') {
+                                        $checksv=mysqli_num_rows(mysqli_query($con,"SELECT id from groupsv where idsv1='$sv' or idsv2='$sv' or idsv3='$sv'"));
+                                        if ($checksv!=0) {
                                             $check=1;
-                                            echo "User ".$sv1." đã đăng ký nhóm ";
+                                            alert( "Bạn đã đăng ký nhóm  rồi!");
                                         }
-                                        if ($sv2=='') {
-                                            $checksv2=true;
-                                        }else{
-                                            $checksv2 = mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv2' or idsv2='$sv2' or idsv3='$sv2'"));
-                                            if ($checksv2[0]!='') {
-                                                $check = 2;
-                                                echo "User ".$sv2." đã đăng ký nhóm ";
-                                            }
-                                        }
-                                        if ($sv3=='') {
-                                            $checksv3=true;
-                                        }else{
-                                            $checksv3 = mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv3' or idsv2='$sv3' or idsv3='$sv3'"));
-                                            if ($checksv3[0]!='') {
-                                                $check = 3;
-                                                echo "User ".$sv3." đã đăng ký nhóm ";
-                                            }
-                                        }
+                                        
                                         if ($check==0) {
-                                            $sql =  mysqli_query($con,"Insert into groupsv(idsv1,idsv2,idsv3) values('$sv1','$sv2','$sv3') ");
+                                            $select_null =  mysqli_query($con,"SELECT * FROM `groupsv` WHERE idsv1='' or idsv2='' or idsv3=''");
+                                            $current_team= mysqli_fetch_array($select_null);
+                                            $current_team_id= $current_team['id'];
+
+
+
+                                            if($current_team['idsv1']=="") {
+                                                $sqli_update="UPDATE groupsv set idsv1='$sv' where id='$current_team_id'";
+                                            }else  if($current_team['idsv2']=="") {
+                                                $sqli_update="UPDATE groupsv set idsv2='$sv' where id='$current_team_id'";
+                                            }else {
+                                                $sqli_update="UPDATE groupsv set idsv3='$sv' where id='$current_team_id'";
+                                            }
+
+
+                                            $sql= mysqli_query($con,$sqli_update);
+                                            $current_team_idsv1= mysqli_query($con,"SELECT * from `groupsv` where id='$current_team_id'");
+                                            $current_team=mysqli_fetch_array($current_team_idsv1);
+                                            $current_team_leader=$current_team['idsv1'];
+                                            
+                                            
+                                            $sqli_set_leader=mysqli_query($con,"UPDATE groupsv set leader='$current_team_leader' where id='$current_team_id'");
+
+
                                             if ($sql) {
                                                 # code...
-                                                echo "Đăng ký thành công";
-                                            }else echo "Đăng ký thất bại";
+
+                                                alert( "Đăng ký thành công");
+                                            }else alert( "Đăng ký thất bại");
                                         }
 
                                     }

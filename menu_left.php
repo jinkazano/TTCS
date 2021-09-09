@@ -1,4 +1,9 @@
 <?php
+
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
 if (isset($_SESSION['username'])) {
     include 'lib/connect.php';
     $username = $_SESSION['username'];
@@ -8,6 +13,7 @@ if (isset($_SESSION['username'])) {
 
     $permission = $rowp['6'];
     ?>
+
     <!-- Side bar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
   <!-- Divider -->
@@ -122,8 +128,12 @@ if (isset($_SESSION['username'])) {
 
     }
     if ($permission == 'student') {
-        ?>
-      <!-- Nav Item - Dành cho sinh viên -->
+        $idsv           = $_SESSION['username'];
+        $is_leader_sqli = mysqli_num_rows(mysqli_query($con, "SELECT * from groupsv where leader ='$idsv'"));
+        if ($is_leader_sqli > 0) {
+
+            ?>
+      <!-- Nav Item - Dành cho sinh viên (nhóm trưởng) -->
     <li class="nav-item active">
         <a  class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseStudent" aria-expanded="true" aria-controls="collapseStudent">
             <i class="fas fa-book-reader"></i>
@@ -136,9 +146,8 @@ if (isset($_SESSION['username'])) {
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
             <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
-            <a class="collapse-item" href="danh-sach-nhom.php">Danh sách đăng kí nhóm</a>
-            <a class="collapse-item" href="dk-gvhuongdan.php">Đăng kí giáo viên hướng dẫn</a>
-            <a class="collapse-item" href="dk-detai.php.php">Đăng kí đề tài</a>
+            <a class="collapse-item" href="dk-gvhuongdan.php">Đăng kí GV hướng dẫn</a>
+            <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a>
           </div>
         </div>
     </li>
@@ -146,7 +155,30 @@ if (isset($_SESSION['username'])) {
     <hr class="sidebar-divider d-none d-md-block">
     <?php
 
-    }
+        } else {
+            ?>
+            <!-- Nav Item - Dành cho sinh viên (không phải nhóm trưởng) -->
+    <li class="nav-item active">
+        <a  class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseStudent" aria-expanded="true" aria-controls="collapseStudent">
+            <i class="fas fa-book-reader"></i>
+            <span>
+                Dành cho sinh viên
+            </span>
+        </a>
+        <div id="collapseStudent"class="collapse"
+        aria-labelledby="headingStudent"data-target="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Dành cho sinh viên:</h6>
+            <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
 
+          </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+<?php
+}
+    }
 }
 ?>

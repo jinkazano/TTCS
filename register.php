@@ -45,17 +45,19 @@ session_start();
                                     }
                                 }
                                 ?>
-                                <form action="" method="post">
+
+                                <form action="" method="post" role="form"data-parsley-validate>
                                     <label for="">Tên đăng nhập:</label>
-                                    <input type="text" class="form-control" name="username1">
+                                    <input type="text" class="form-control" name="username1" required data-parsley-length="[1,20]" 
+                                    >
                                     <label for="">Mật khẩu:</label>
-                                    <input type="password" class="form-control" name="password">
-                                    <label for="">Họ và tên:</label>
-                                    <input type="text" class="form-control" name="fullname">
-                                    <label for="">Số điện thoại:</label>
-                                    <input type="number" class="form-control" name="phone">
+                                    <input type="password" class="form-control" name="password" required data-parsley-length="[1,20]"  >
+                                    <label for="">Họ và tên:</label  >
+                                    <input type="text" class="form-control" name="fullname"required data-parsley-length="[1,30]" >
+                                    <label for="">Số điện thoại:</label  >
+                                    <input type="number" class="form-control" name="phone" required data-parsley-length="[3,11]" >
                                     <label for="">Email:</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" name="email"required data-parsley-type="email">
                                     <label for="">Phân quyền:</label>
                                     <select class="form-control" name="permission">
                                         <option value="admin">Admin</option>

@@ -13,7 +13,7 @@ session_start();
     <body>
         <?php
         require_once("lib/connect.php");
-        $_SESSION['username=']="admin2";
+		$_SESSION['username']='';
 //        $sql_test= "select * from user where id='30'";
 //        $query_test= mysqli_query($con, $sql_test);
 //        $string = mysqli_fetch_row($query_test);
@@ -23,17 +23,18 @@ session_start();
             header("location:index.php");
         }
         if (isset($_POST['login'])) {
+			
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $password = md5($password);
-            $sql = "select * from user where username='$username' and password='$password'";
-            $query = mysqli_query($con, $sql);
-            $num_rows = mysqli_num_rows($query);
-            if ($num_rows == 0) {
-                echo "Tên đăng nhập hoặc mật khẩu không đúng";
+			$password = md5($password);
+            $sql = mysqli_query($con, " SELECT * FROM user WHERE username='$username' and password='$password'");
+            $count = mysqli_num_rows($sql);
+			$row_dangnhap = mysqli_fetch_array($sql);
+            if ($count > 0) {
+				$_SESSION['username'] = $username;
+				header("location:index.php");
             } else {
-                $_SESSION['username'] = $username;
-                header("location:index.php");
+                alert( "Tên đăng nhập hoặc mật khẩu không đúng");
             }
         }
         ?>
@@ -42,7 +43,9 @@ session_start();
             
             <section id="content">
                 <form action="" method="post" accept-charset="utf-8">
-                    <h1>Đăng nhập</h1>
+					<img src="static/img/logoKMA.jpg" width="100" height="100">
+                    <h1>Học viện Kỹ thuật mật mã</h1>
+					<h6>Cổng thông tin sinh viên</h6>
                     <div>
                         <input type="text" name="username" placeholder="Tên đăng nhập" >
                     </div>
@@ -51,7 +54,6 @@ session_start();
                     </div>
                     <div>
                         <input type="submit" name="login" value="Đăng nhập">
-                        <input type="submit" name="index" value="Trang chủ">
                     </div>
                 
                 </form>

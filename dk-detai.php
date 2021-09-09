@@ -25,7 +25,7 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <h3 class="text-center">Đăng ký đề tài</h3>
-                                <!-- <?php 
+                                 <?php 
                                 $rowq = mysqli_fetch_row(mysqli_query($con, "SELECT dkgiaovien.teacher , dkgiaovien.groupsv , dinhhuong.dinhhuong1, dinhhuong.dinhhuong2, dinhhuong.dinhhuong3 , groupsv.id
                                     FROM dkgiaovien 
                                     JOIN dinhhuong ON dkgiaovien.teacher=dinhhuong.tengv
@@ -45,7 +45,7 @@ session_start();
                                         echo "Đăng kí thất bại.";
                                     }
                                 }
-                                ?> -->
+                                ?> 
                                 <form action="" method="post">
                                     <label for="">Giáo viên hướng dẫn</label>
                                     <input type="text" class="form-control" value="<?php echo $gv ?>">

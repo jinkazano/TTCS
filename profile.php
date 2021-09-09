@@ -75,10 +75,23 @@ elseif ($permission=='student') {
                 <td><?php echo $row[3]; ?></td>
                 <td><?php echo $row[4]; ?></td>
                 <td><?php echo $row[5]; ?></td>
-                <td><?php echo $rowa[0]; ?></td>
-                <td><?php echo $rowd[0]; ?></td>
-                <td><?php echo $rowb[1]; ?></td>
-                <td><?php echo $rowb[2] ?></td>
+                <td><?php 
+                if($rowa!=null) {
+                    echo $rowa[0];
+                } else echo "Chưa đăng kí";
+                 ?></td>
+                <td><?php if( $rowd!=null) {
+                    echo $rowd[0];
+                    }else echo "Chưa đăng kí" ;
+                     ?></td>
+                <td><?php if($rowb!=null) {
+                    echo $rowb[1];
+                }else echo "Chưa đăng kí"; 
+                ?></td>
+                <td><?php if( $rowb!=null) {
+                    echo $rowb[2];
+                }else echo"Chưa đăng kí";   
+                ?></td>
             </tr>
         </tbody>
         

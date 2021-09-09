@@ -25,7 +25,7 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <h3 class="text-center text-uppercase">
-                                    Đăng kí giáo viên hướng dẫn
+                                    Đăng kí GV hướng dẫn
                                 </h3>
                                 <form action="" method="post">
                                     <div class="inline">

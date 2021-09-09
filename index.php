@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['username'] = "admin";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,6 +54,24 @@ $_SESSION['username'] = "admin";
                     <div class="sidebar">
                         <?php require_once 'menu_left.php';?>
                     </div>
+                    <!-- End of Sidebar -->
+                    <!-- Content Wrapper -->
+                    <div class="d-flex flex-column" id="content-wrapper">
+                        <!-- main content -->
+                        <div class="content p-5">
+                            <div class="card">
+                                <div class="card-header bg-sweetAiran text-right">
+                                    <?php require_once 'home_page.php'?>
+                                </div>
+                                <div class="card-body">
+                                    <?php require_once 'profile.php'?>
+                                </div>
+                                <div class="card-footer bg-sweetAiran">
+                                    <?php require_once 'inf_footer.php'?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,24 +79,7 @@ $_SESSION['username'] = "admin";
 </body>
 
 </html>
-<!-- End of Sidebar -->
-<!-- Content Wrapper -->
-<div class="d-flex flex-column" id="content-wrapper">
-    <!-- main content -->
-    <div class="content p-5">
-        <div class="card">
-            <div class="card-header bg-sweetAiran text-right">
-                <?php require_once 'home_page.php'?>
-            </div>
-            <div class="card-body">
-                <?php require_once 'profile.php'?>
-            </div>
-            <div class="card-footer bg-sweetAiran">
-                <?php require_once 'inf_footer.php'?>
-            </div>
-        </div>
-    </div>
-</div>
+
 <?php
 }
 ?>

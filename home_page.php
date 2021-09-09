@@ -17,8 +17,9 @@ if (isset($_SESSION['username'])) {
         <?php
     }
 } else {
+    header("Location: /TTCS/login.php");
     ?>
-    <a href="login.php" >Đăng nhập</a>
+    <!-- <a href="login.php" >Đăng nhập</a> -->
     <?php
 }
 ?>
