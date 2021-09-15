@@ -39,10 +39,30 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php 
+                                             $sql_total = "select count(id) as total from dinhhuong";
+                                             $data = mysqli_query($con, $sql_total);
+                                             $rows = mysqli_fetch_assoc($data);
+                                             $total_records = $rows['total'];
+                                             $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                             $limit = 5; 
+ 
+                                             // BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
+                                             // tổng số trang
+                                             $total_page = ceil($total_records / $limit);
+                                             // Giới hạn current_page trong khoảng 1 đến total_page
+                                             if ($current_page > $total_page) {
+                                                 $current_page = $total_page;
+                                             } else if ($current_page < 1) {
+                                                 $current_page = 1;
+                                             }
+ 
+                                             // Tìm Start
+                                             $start = ($current_page - 1) * $limit;
+                                             $end = $start + $limit;
                                             if ($permission == 'teacher') {
-                                                $check = mysqli_query($con,"select * from dsdetai where tengv = '$fullname'");
+                                                $check = mysqli_query($con,"select * from dsdetai where tengv = '$fullname' limit $start,$limit");
                                             }else{
-                                                $check = mysqli_query($con,"select * from dsdetai ");
+                                                $check = mysqli_query($con,"select * from dsdetai limit $start,$limit");
                                             }  
                                             //xuất file excel
                                             
@@ -99,8 +119,35 @@ session_start();
                                            ?>
 
                                        </tbody>
-
                                    </table>
+                                   <nav aria-label="Page navigation example">
+                                     <ul class="pagination">
+
+                                        <?php
+                                        // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                        if ($current_page > 1 && $total_page > 1) {
+                                           
+                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-de-tai.php?page=' . ($current_page - 1) . '">Previous</a></li>';
+                                        }
+
+                                        // Lặp khoảng giữa
+                                        for ($i = 1; $i <= $total_page; $i++) { // Nếu là trang hiện tại thì hiển thị thẻ span // ngược lại hiển thị thẻ a
+                                            if ($i == $current_page) {
+                                                
+                                                echo '<li class="page-item"><a class="page-link" href="#">'. $i .'</a></li>';
+                                            } else {
+                                                
+                                                echo '<li class="page-item"><a class="page-link" href="danh-sach-de-tai.php?page=' . $i . '">'. $i .'</a></li>';
+                                            }
+                                        }
+                                        // nếu current_page < $total_page và total_page> 1 mới hiển thị nút prev
+                                        if ($current_page < $total_page && $total_page > 1) {
+                                        
+                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-de-tai.php?page=' . ($current_page + 1) . '">Next</a></li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                    </nav>
                                    <button type="submit" class=" m-2 btn btn-success" name="export"><i class="far fa-edit"></i> Xuất file Excel</button>
                                </form>
 

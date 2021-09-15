@@ -32,7 +32,7 @@ session_start();
                                                 <th>STT</th>
                                                 <th>Tên giáo viên</th>
                                                 <th>Nhóm</th>
-                                                <th>Tên định hướng</th>
+                                                
                                                 <th>Tên đề tài</th>
                                                 <th colspan="2">Xác nhận</th>
                                             </tr>
@@ -52,7 +52,7 @@ session_start();
                                                  <td><?php echo $rowq['0'] ?></td>
                                                  <td><?php echo $rowq['1'] ?></td>
                                                  <td><?php echo $rowq['2'] ?></td>
-                                                 <td><?php echo $rowq['4'] ?></td>
+                                                 
                                                  <td><?php echo $rowq['3'] ?></td>
                                                  <td class="text-center">
                                                     <a class="btn btn-primary" href="duyet.php?stt=<?php echo $rowq['0'] ?>">Duyệt</a>

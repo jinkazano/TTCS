@@ -3,16 +3,20 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Thực tập cơ sở</title>
     <?php require_once('filecss.php') ?>
+    <?php require_once('filejs.php') ?>
 </head>
+
 <body>
+   
     <div class="container-fluid">
         <?php require_once('logo.php'); ?>
-        <div class="main" >
+        <div class="main">
             <div id="wrapper">
                 <div id="sidebar">
                     <?php require_once('menu_left.php'); ?>
@@ -35,9 +39,20 @@ session_start();
                                     $phone = $_POST['phone'];
                                     $email = $_POST['email'];
                                     $permission = $_POST['permission'];
+                                    $slot=$_POST['slot'];
                                     $sql1 = "insert into user(username,password,fullname,phone,email,permission)
                                     values ('$username1','$password','$fullname','$phone','$email','$permission')";
-                                    $check = mysqli_query($con, $sql1);
+                                    if(isset($slot)) {
+                                        $check = mysqli_query($con, $sql1);
+                                        $add_slot=mysqli_query($con,"INSERT into dkgiaovien(teacher,slot) values ('$username1','$slot')");
+
+                                    }
+                                    else {
+                                        $check = mysqli_query($con, $sql1);
+                                    }
+
+
+                                    
                                     if ($check) {
                                         echo "Đăng kí thành công!!!";
                                     } else {
@@ -45,31 +60,36 @@ session_start();
                                     }
                                 }
                                 ?>
-
-                                <form action="" method="post" role="form"data-parsley-validate>
+                                <form action="" method="post" role="form" data-parsley-validate>
                                     <label for="">Tên đăng nhập:</label>
-                                    <input type="text" class="form-control" name="username1" required data-parsley-length="[1,20]" 
-                                    >
+                                    <input type="text" class="form-control" name="username1" required data-parsley-length="[1,20]">
                                     <label for="">Mật khẩu:</label>
-                                    <input type="password" class="form-control" name="password" required data-parsley-length="[1,20]"  >
-                                    <label for="">Họ và tên:</label  >
-                                    <input type="text" class="form-control" name="fullname"required data-parsley-length="[1,30]" >
-                                    <label for="">Số điện thoại:</label  >
-                                    <input type="number" class="form-control" name="phone" required data-parsley-length="[3,11]" >
+                                    <input type="password" class="form-control" name="password" required data-parsley-length="[1,20]">
+                                    <label for="">Họ và tên:</label>
+                                    <input type="text" class="form-control" name="fullname" required data-parsley-length="[1,30]">
+                                    <label for="">Số điện thoại:</label>
+                                    <input type="number" class="form-control" name="phone" required data-parsley-length="[3,11]">
                                     <label for="">Email:</label>
-                                    <input type="email" class="form-control" name="email"required data-parsley-type="email">
+                                    <input type="email" class="form-control" name="email" required data-parsley-type="email">
                                     <label for="">Phân quyền:</label>
-                                    <select class="form-control" name="permission">
-                                        <option value="admin">Admin</option>
-                                        <option value="teacher">Giáo viên</option>
-                                        <option value="student">Sinh viên</option>
+                                    <select id="permission"class="form-control" name="permission" >
+                                        
+                                        <option value="teacher" name="teacher">Giáo viên</option>
+                                        <option value="student" name="student">Sinh viên</option>
+                                        <option value="admin" name="admin">Admin</option>
                                     </select>
+                                    <div id="hidden_div"   >
+                                        <label for="">Số nhóm hướng dẫn:</label>
+                                        <input type="number" id="slot" class="form-control" name="slot"  required data-parsley-length="[1,2]">
+                                    </div>
+                                    
+
                                     <div class="chucnang mt-3">
                                         <button type="submit" class=" m-2 btn btn-success" name="register"><i class="far fa-edit"></i> Đăng kí</button>
-                                        <button type="submit" class="m-2 btn btn-danger" name="reset"><i class="fas fa-sync-alt"></i> Nhập lại</button>
+                                        <button type="reset" class="m-2 btn btn-danger" name="reset"><i class="fas fa-sync-alt"></i> Nhập lại</button>
                                     </div>
                                 </form>
-                            </div> 
+                            </div>
                             <div class="card-footer">
                                 <?php require_once('inf_footer.php') ?>
                             </div>
@@ -79,7 +99,8 @@ session_start();
             </div>
         </div>
     </div>
-    
     <?php require_once('filejs.php') ?>
 </body>
+
 </html>
+

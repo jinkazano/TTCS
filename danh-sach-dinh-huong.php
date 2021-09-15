@@ -15,7 +15,7 @@ session_start();
         <?php require_once('logo.php'); ?>
         <div class="main" >
             <div id="wrapper">
-                <div id="sidebar">
+                <div class="sidebar ">
                     <?php require_once('menu_left.php'); ?>
                 </div>
                 <div id="content-wrapper" class="d-flex flex-column p-5">
@@ -35,9 +35,8 @@ session_start();
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Tên giáo viên</th>
-                                                <th>Định hướng 1</th>
-                                                <th>Định hướng 2</th>
-                                                <th>Định hướng 3</th>
+                                                <th>Định hướng </th>
+                                               
                                             </tr>
                                             <tr>
 
@@ -46,11 +45,31 @@ session_start();
                                         <tbody>
                                             <?php 
                                             include 'lib/connect.php';
+                                            $sql_total = "select count(id) as total from dinhhuong";
+                                                $data = mysqli_query($con, $sql_total);
+                                                $rows = mysqli_fetch_assoc($data);
+                                                $total_records = $rows['total'];
+                                                $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                                $limit = 5; 
+    
+                                                // BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
+                                                // tổng số trang
+                                                $total_page = ceil($total_records / $limit);
+                                                // Giới hạn current_page trong khoảng 1 đến total_page
+                                                if ($current_page > $total_page) {
+                                                    $current_page = $total_page;
+                                                } else if ($current_page < 1) {
+                                                    $current_page = 1;
+                                                }
+    
+                                                // Tìm Start
+                                                $start = ($current_page - 1) * $limit;
+                                                $end = $start + $limit;
                                             if ($permission == 'teacher')
                                             {
-                                                $sql1 = "select * from dinhhuong where tengv ='$fullname'";
+                                                $sql1 = "select * from dinhhuong where tengv ='$fullname' limit $start,$limit";
                                             }
-                                            else $sql1 = "select * from dinhhuong ";
+                                            else $sql1 = "select * from dinhhuong limit $start,$limit";
                                             
                                             $check=mysqli_query($con,$sql1);
                                             while ($row1=mysqli_fetch_row($check)) {
@@ -58,11 +77,7 @@ session_start();
                                                 <tr>
                                                     <td><?php echo $row1['0']; ?></td>
                                                     <td><?php echo $row1['1']; ?></td>
-                                                    <td><?php echo $row1['2']; ?></td>
-                                                    <td><?php echo $row1['3'];?></td>
-                                                    <td><?php echo $row1['4'];?></td>
-
-
+                                                    <td><pre ><?php echo $row1['2']; ?></pre></td>
                                                 </tr>
 
                                                 <?php
@@ -72,6 +87,30 @@ session_start();
                                             
                                         </tbody>
                                     </table>
+                                    <nav aria-label="Page navigation example">
+                                     <ul class="pagination">
+
+                                        <?php
+                                        // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
+                                        if ($current_page > 1 && $total_page > 1) {
+                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . ($current_page - 1) . '">Previous</a></li>';
+                                        }
+
+                                        // Lặp khoảng giữa
+                                        for ($i = 1; $i <= $total_page; $i++) { // Nếu là trang hiện tại thì hiển thị thẻ span // ngược lại hiển thị thẻ a 
+                                            if ($i == $current_page) {
+                                                echo '<li class="page-item"><a class="page-link" href="#">'. $i .'</a></li>';
+                                            } else {
+                                                echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . $i . '">'. $i .'</a></li>';
+                                            }
+                                        }
+                                        // nếu current_page < $total_page và total_page> 1 mới hiển thị nút prev
+                                        if ($current_page < $total_page && $total_page > 1) {
+                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . ($current_page + 1) . '">Next</a></li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                    </nav>
                                 </form>
                             </div> 
                             <div class="card-footer">

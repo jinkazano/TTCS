@@ -4,6 +4,10 @@ function alert($msg)
 {
     echo "<script type='text/javascript'>alert('$msg');</script>";
 }
+function replace($msg)
+{
+    echo("<script>location.href =\"http://localhost/TTCS/$msg\";</script>");
+}
 if (isset($_SESSION['username'])) {
     include 'lib/connect.php';
     $username = $_SESSION['username'];

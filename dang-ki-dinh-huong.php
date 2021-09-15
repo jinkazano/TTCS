@@ -25,20 +25,14 @@ session_start();
                         <div class="card-body">
                             <h2 class="text-center text-uppercase">Đăng kí định hướng</h2>
                             <form action="" method="post">
-                                <label for="">Định hướng 1: </label>
+                                <label for="">Định hướng: </label>
                                 <input type="text" name="dh1" size="30" required="" class="form-control">
-                                <label for="">Định hướng 2: </label>
-                                <input type="text" name="dh2" size="30" required="" class="form-control">
-                                <label for="">Định hướng 3: </label>
-                                <input type="text" name="dh3" size="30" required="" class="form-control">
                                 <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ" style="display: block; margin: 10px auto;">
                                 <?php
                                 if (isset($_POST['dangki'])) {
                                     $dh1 = $_POST['dh1'];
-                                    $dh2 = $_POST['dh2'];
-                                    $dh3 = $_POST['dh3'];
-                                    $sql1 = "insert into dinhhuong(tengv,dinhhuong1,dinhhuong2,dinhhuong3) 
-                                    value ('$fullname','$dh1','$dh2','$dh3')";
+                                    $sql1 = "insert into dinhhuong(tengv,dinhhuong1) 
+                                    value ('$fullname','$dh1')";
                                     if (mysqli_query($con, $sql1)) {
                                         echo "Đăng kí thành công";
                                     } else

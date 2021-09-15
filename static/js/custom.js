@@ -1,4 +1,4 @@
-! function(t) {
+(function(t) {
     "use strict";
     t("#sidebarToggle, #sidebarToggleTop").on("click", function(o) { t("body").toggleClass("sidebar-toggled"), t(".sidebar").toggleClass("toggled"), t(".sidebar").hasClass("toggled") && t(".sidebar .collapse").collapse("hide") }), t(window).resize(function() { t(window).width() < 768 && t(".sidebar .collapse").collapse("hide") }), t("body.fixed-nav .sidebar").on("mousewheel DOMMouseScroll wheel", function(o) {
         if (768 < t(window).width()) {
@@ -10,5 +10,15 @@
         var e = t(this);
         t("html, body").stop().animate({ scrollTop: t(e.attr("href")).offset().top }, 1e3, "easeInOutExpo"), o.preventDefault()
     })
-     
-}(jQuery);
+
+
+})(jQuery);
+
+$(function() {
+    
+
+    $('#permission').change(function(){
+        $('#hidden_div')[ ($("option[value='teacher']").is(":checked"))? "show" : "hide" ]();  
+    });
+});
+

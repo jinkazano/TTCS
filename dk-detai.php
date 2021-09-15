@@ -26,15 +26,14 @@ session_start();
                             <div class="card-body">
                                 <h3 class="text-center">Đăng ký đề tài</h3>
                                  <?php 
-                                $rowq = mysqli_fetch_row(mysqli_query($con, "SELECT dkgiaovien.teacher , dkgiaovien.groupsv , dinhhuong.dinhhuong1, dinhhuong.dinhhuong2, dinhhuong.dinhhuong3 , groupsv.id
+                                $rowq = mysqli_fetch_row(mysqli_query($con, "SELECT dkgiaovien.teacher , dkgiaovien.groupsv , dinhhuong.dinhhuong1,  groupsv.id
                                     FROM dkgiaovien 
                                     JOIN dinhhuong ON dkgiaovien.teacher=dinhhuong.tengv
                                     JOIN groupsv ON dkgiaovien.groupsv=groupsv.id AND groupsv.id = (SELECT id FROM groupsv WHERE idsv1='$username' OR idsv2='$username' OR idsv3 = '$username')"));
                                 $gv = $rowq['0'];
                                 $nhom = $rowq['1'];
                                 $dh1 = $rowq['2'];
-                                $dh2 = $rowq['3'];
-                                $dh3 = $rowq['4'];
+                                
                                 if (isset($_POST['dangki'])) {
                                     $detai = $_POST['detai'];
                                     $dinhhuong = $_POST['sellist1'];
@@ -45,24 +44,46 @@ session_start();
                                         echo "Đăng kí thất bại.";
                                     }
                                 }
+                                if($permission=='student') {
+
+                                
                                 ?> 
+
                                 <form action="" method="post">
+
                                     <label for="">Giáo viên hướng dẫn</label>
-                                    <input type="text" class="form-control" value="<?php echo $gv ?>">
+                                    <input type="text" class="form-control" value="<?php echo $gv ?>"readonly>
                                     <label for="">Nhóm: </label>
-                                    <input type="text" class="form-control" value="<?php echo $nhom ?>">
+                                    <input type="text" class="form-control" value="<?php echo $nhom ?>"readonly>
                                     <label for="">Định hướng:</label>
-                                    <select class="form-control" name="sellist1" >
-                                        <option value="<?php echo $dh1 ?>"><?php echo $dh1 ?></option>
-                                        <option value="<?php echo $dh2 ?>"><?php echo $dh2 ?></option>
-                                        <option value="<?php echo $dh3 ?>"><?php echo $dh3 ?></option>
-                                    </select>
+                                    <textarea class="form-control" rows="4" name="dinhhuong" readonly><?php echo $dh1 ?></textarea>
                                     <label for="">Đề tài:</label>
                                     <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea>
                                     <div class="text-center mt-3">
                                         <button class=" m-2 btn btn-success" name="dangki"><i class="far fa-edit"></i> Đăng kí</button>
                                     </div>
                                 </form>
+                                <?php
+                                } else if ($permission=='admin') {
+                                    ?>
+                                     <form action="" method="post">
+
+                                    <label for="">Giáo viên hướng dẫn</label>
+                                    <input type="text" class="form-control" value="<?php echo $gv ?>">
+                                    <label for="">Nhóm: </label>
+                                    <input type="text" class="form-control" value="<?php echo $nhom ?>">
+                                    
+                                    <label for="">Đề tài:</label>
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea>
+                                    <div class="text-center mt-3">
+                                        <button class=" m-2 btn btn-success" name="dangki"><i class="far fa-edit"></i> Đăng kí</button>
+                                    </div>
+                                </form>
+                                <?php
+
+                                }
+                                ?>
+
                             </div> 
                             <div class="card-footer">
                                 <?php require_once('inf_footer.php') ?>

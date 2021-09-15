@@ -1,5 +1,9 @@
 <?php
 session_start();
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,15 +46,15 @@ session_start();
             <div class="container">
             
             <section id="content">
-                <form action="" method="post" accept-charset="utf-8">
+                <form action="" method="post" accept-charset="utf-8" data-parsley-validate>
 					<img src="static/img/logoKMA.jpg" width="100" height="100">
                     <h1>Học viện Kỹ thuật mật mã</h1>
 					<h6>Cổng thông tin sinh viên</h6>
                     <div>
-                        <input type="text" name="username" placeholder="Tên đăng nhập" >
+                        <input type="text" name="username" placeholder="Tên đăng nhập" required data-parsley-length="[1,20]">
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Mật khẩu" >
+                        <input type="password" name="password" placeholder="Mật khẩu" required data-parsley-length="[1,20]" >
                     </div>
                     <div>
                         <input type="submit" name="login" value="Đăng nhập">

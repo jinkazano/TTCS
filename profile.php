@@ -12,7 +12,7 @@ if (isset($_SESSION['username'])=="") {
 }
 elseif ($permission=='teacher') {
     $rowz=mysqli_fetch_row(mysqli_query($con,"select * from dinhhuong where tengv='$row[3]'"));
-    $row2 = mysqli_fetch_row(mysqli_query($con, "select teacher, count(teacher) from dkgiaovien where  teacher = '$row[3]' group by teacher "));
+    $current_teacher_register = mysqli_fetch_array(mysqli_query($con, "SELECT * from dkgiaovien where  teacher = '$row[3]' "));
     ?>
     <table class="table table-hover">
         <thead>
@@ -20,9 +20,10 @@ elseif ($permission=='teacher') {
             <th>Họ Tên</th>
             <th>Số điện thoại</th>
             <th>Email</th>
-            <th>Danh sách định hướng</th>
-            <th>Số nhóm đã đăng kí</td>
-                <th>Danh sách nhóm đã đăng kí</th>
+
+            <th>Số nhóm có thể đăng kí tiếp</td>
+            <th>Danh sách nhóm đã đăng kí</th>
+            <th></th>
             </tr>
         </thead>
         <tbody>
@@ -30,24 +31,12 @@ elseif ($permission=='teacher') {
                 <td><?php echo $row[3]; ?></td>
                 <td><?php echo $row[4]; ?></td>
                 <td><?php echo $row[5]; ?></td>
-                <?php
-                if ($rowz[0]==""){
-                    ?>
-                    <td>Giáo viên chưa đăng kí định hướng.</td>
-                    <?php
-                }
-                else {
-                    ?>
-                    <td>
-                        <div>1: <?php echo $rowz[2]; ?></div>
-                        <div>2: <?php echo $rowz[3]; ?></div>
-                        <div>3: <?php echo $rowz[4]; ?></div>
-                    </td>
-                    <?php
-                }
-                ?>
-                <td><?php echo $row2[1]; ?></td>
-                <td><a class="btn btn-success" href="ds_nhomdk.php">Xem tại đây</a></td>
+                
+                    
+                   
+                <td><?php echo $current_teacher_register['slot']?></td>
+                <td><?php echo $current_teacher_register['groupsv']  ?></td>
+                <td><a class="btn btn-success" href="ds_nhomdk.php">Xem chi tiết</a></td>
             </tr>
         </tbody>
     </table>

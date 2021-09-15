@@ -1,51 +1,40 @@
-<?php
-session_start();
-if ($_SESSION['username']) {
-	include 'lib/connect.php';
-	$username = $_SESSION['username'];
-	$row1 = mysqli_fetch_row(mysqli_query($con, "select * from user where username = '$username'"));
-	$idsv = $row1['1'];
-	$row2 = mysqli_fetch_row(mysqli_query($con, "select * from groupsv where idsv1 ='$idsv' "));
+<form method="post" action="">
+    <div>
+        <button class="btn btn-success btn-lg" name="dangky"> Đăng kí</button>
+    </div>
+    <?php
 
+if (isset($_POST['dangky'])) {
 
+    $user = $_SESSION['username'];
 
-	if ($row2['1']=="") {
-		echo "Bạn không phải là nhóm trưởng. ";
-		echo "Bấm vào ";
-		?>
-		<a href="dk-gvhuongdan.php">đây</a>
-		<?php
-		echo " để trở về danh sách giáo viên hướng dẫn.";
-	}
-	else {
-		if ($_GET['id']) {
-			$id = $_GET['id'];
-			$row3 = mysqli_fetch_row(mysqli_query($con, "select * from dinhhuong where id='$id'"));
+    $current_team = (mysqli_fetch_array(mysqli_query($con, "SELECT * from groupsv where leader='$user'")));
+    if ($current_team['teacher_registration'] == 1) {
+        alert("Nhóm của bạn đã đăng kí giáo viên rồi!");
+    } else {
+        $current_teacher = (mysqli_fetch_array(mysqli_query($con, "SELECT *from dkgiaovien where teacher='$teacher'")));
+        if ($current_teacher['groupsv'] == '') {
+            $current_teacher_groupsv = $current_team['id'];
 
-			$idnhom = $row2['0'];
-			$tengv = $row3['1'];
-			$row4 = mysqli_fetch_row(mysqli_query($con, "select * from dkgiaovien where groupsv = '$idnhom'"));
-			if($row4[1]!=''){
-				echo "Nhóm của bạn đã đăng kí giáo viên. ";
-				echo "Bấm vào ";
-					?>
-					<a href="dk-gvhuongdan.php">đây</a>
-					<?php
-					echo " để trở về danh sách giáo viên hướng dẫn.";
-			}else{
-				$check = mysqli_query($con, "insert into dkgiaovien(teacher,groupsv) values ('$tengv','$idnhom')");
-				if ($check) {
-					echo "Đăng kí thành công. ";
-					echo "Bấm vào ";
-					?>
-					<a href="dk-gvhuongdan.php">đây</a>
-					<?php
-					echo " để trở về danh sách giáo viên hướng dẫn.";
-				} else {
-					echo "Đăng kí thất bại";
-				}
-			}
-		}
-	}
+        } else {
+            $current_teacher_groupsv = $current_teacher['groupsv'] . "," . $current_team['id'];
+        }
+
+        $current_teacher_slot = $current_teacher['slot'] - 1;
+        $sql                  = mysqli_query($con, "UPDATE dkgiaovien set groupsv ='$current_teacher_groupsv' where teacher='$teacher'");
+
+        if ($sql) {
+            $sql2 = mysqli_query($con, "UPDATE dkgiaovien set slot ='$current_teacher_slot' where teacher='$teacher'");
+            $sql3 = mysqli_query($con, "UPDATE groupsv set teacher_registration =1 where leader='$user' ");
+
+            alert("Đăng kí thành công");
+            replace("dk-gvhuongdan.php");
+
+        } else {
+            alert("Thất bại");
+        }
+    }
+
 }
 ?>
+</form>

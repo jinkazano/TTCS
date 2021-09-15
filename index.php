@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,7 @@ session_start();
             <div class="main">
                 <div id="wrapper">
                     <!-- Sidebar -->
-                    <div class="sidebar">
+                    <div class="sidebar ">
                         <?php require_once 'menu_left.php';?>
                     </div>
                     <!-- End of Sidebar -->
