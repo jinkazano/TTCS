@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 09, 2021 lúc 09:05 AM
+-- Thời gian đã tạo: Th9 15, 2021 lúc 09:55 PM
 -- Phiên bản máy phục vụ: 10.4.13-MariaDB
 -- Phiên bản PHP: 7.4.8
 
@@ -30,17 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `dinhhuong` (
   `id` int(11) NOT NULL,
   `tengv` text NOT NULL,
-  `dinhhuong1` text NOT NULL,
-  `dinhhuong2` text NOT NULL,
-  `dinhhuong3` text NOT NULL
+  `dinhhuong1` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `dinhhuong`
 --
 
-INSERT INTO `dinhhuong` (`id`, `tengv`, `dinhhuong1`, `dinhhuong2`, `dinhhuong3`) VALUES
-(1, 'Nguyễn Văn Phác', 'Phân tích, thiết kế hệ thống thông tin cho các dự án phần mềm', 'Khảo sát, phân tích, thiết kế website', 'Xây dựng chương trình quản lý');
+INSERT INTO `dinhhuong` (`id`, `tengv`, `dinhhuong1`) VALUES
+(1, 'Nguyễn Văn Phác', 'Phân tích, thiết kế hệ thống thông tin cho các dự án phần mềm'),
+(13, 'gv1', '1\r\n1\r\n1');
 
 -- --------------------------------------------------------
 
@@ -51,27 +50,18 @@ INSERT INTO `dinhhuong` (`id`, `tengv`, `dinhhuong1`, `dinhhuong2`, `dinhhuong3`
 CREATE TABLE `dkgiaovien` (
   `id` int(11) NOT NULL,
   `teacher` text NOT NULL,
-  `groupsv` int(11) NOT NULL
+  `slot` int(10) NOT NULL,
+  `groupsv` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `dkgiaovien`
 --
 
-INSERT INTO `dkgiaovien` (`id`, `teacher`, `groupsv`) VALUES
-(2, 'Nguyễn Văn Phác', 2),
-(3, 'Nguyá»…n VÄƒn PhÃ¡c', 3),
-(4, 'Nguyá»…n VÄƒn PhÃ¡c', 4),
-(5, 'Nguyá»…n VÄƒn PhÃ¡c', 5),
-(6, 'Nguyá»…n VÄƒn PhÃ¡c', 6),
-(7, 'Nguyá»…n VÄƒn PhÃ¡c', 7),
-(8, 'Nguyá»…n VÄƒn PhÃ¡c', 8),
-(9, 'Nguyá»…n VÄƒn PhÃ¡c', 9),
-(10, 'Nguyá»…n VÄƒn PhÃ¡c', 10),
-(11, 'Nguyá»…n VÄƒn PhÃ¡c', 11),
-(12, 'Nguyá»…n VÄƒn PhÃ¡c', 12),
-(13, 'Nguyá»…n VÄƒn PhÃ¡c', 13),
-(14, 'ThÃ¡i Thá»‹ Thanh VÃ¢n', 14);
+INSERT INTO `dkgiaovien` (`id`, `teacher`, `slot`, `groupsv`) VALUES
+(1, 'Nguyễn Văn Phác', 0, '2,3'),
+(2, 'gv1', 2, '1,2'),
+(18, 'gv3', 3, '');
 
 -- --------------------------------------------------------
 
@@ -92,7 +82,7 @@ CREATE TABLE `dsdetai` (
 --
 
 INSERT INTO `dsdetai` (`id`, `tengv`, `nhom`, `detai`, `dinhhuong`) VALUES
-(1, 'Nguyễn Văn Phác', '13', 'Phân tích, thiết kế phần mềm X9', 'Phân tích, thiết kế hệ thống thông tin cho các dự án phần mềm');
+(1, 'gv1', '1', 'Phân tích, thiết kế phần mềm X9', 'Phân tích, thiết kế hệ thống thông tin cho các dự án phần mềm');
 
 -- --------------------------------------------------------
 
@@ -104,9 +94,15 @@ CREATE TABLE `dsdetaisv` (
   `id` int(11) NOT NULL,
   `tengv` text NOT NULL,
   `nhom` text NOT NULL,
-  `detai` text NOT NULL,
-  `dinhhuong` text NOT NULL
+  `detai` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `dsdetaisv`
+--
+
+INSERT INTO `dsdetaisv` (`id`, `tengv`, `nhom`, `detai`) VALUES
+(17, 'gv1', '1', 'go');
 
 -- --------------------------------------------------------
 
@@ -134,29 +130,31 @@ CREATE TABLE `groupsv` (
   `leader` text NOT NULL,
   `idsv1` text NOT NULL,
   `idsv2` text NOT NULL,
-  `idsv3` text NOT NULL
+  `idsv3` text NOT NULL,
+  `teacher_registration` tinyint(1) NOT NULL,
+  `topic_registration` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Đang đổ dữ liệu cho bảng `groupsv`
 --
 
-INSERT INTO `groupsv` (`id`, `leader`, `idsv1`, `idsv2`, `idsv3`) VALUES
-(1, 'at01', 'at01', 'at02', 'at03'),
-(2, 'at04', 'at04', 'at05', ''),
-(3, '', '', '', ''),
-(4, '', '', '', ''),
-(5, '', '', '', ''),
-(6, '', '', '', ''),
-(7, '', '', '', ''),
-(8, '', '', '', ''),
-(9, '', '', '', ''),
-(10, '', '', '', ''),
-(11, '', '', '', ''),
-(12, '', '', '', ''),
-(13, '', '', '', ''),
-(14, '', '', '', ''),
-(15, '', '', '', '');
+INSERT INTO `groupsv` (`id`, `leader`, `idsv1`, `idsv2`, `idsv3`, `teacher_registration`, `topic_registration`) VALUES
+(1, 'at01', 'at01', 'at02', 'at03', 1, 0),
+(2, 'at04', 'at04', 'at05', '', 1, 0),
+(3, '', '', '', '', 0, 0),
+(4, '', '', '', '', 0, 0),
+(5, '', '', '', '', 0, 0),
+(6, '', '', '', '', 0, 0),
+(7, '', '', '', '', 0, 0),
+(8, '', '', '', '', 0, 0),
+(9, '', '', '', '', 0, 0),
+(10, '', '', '', '', 0, 0),
+(11, '', '', '', '', 0, 0),
+(12, '', '', '', '', 0, 0),
+(13, '', '', '', '', 0, 0),
+(14, '', '', '', '', 0, 0),
+(15, '', '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -187,12 +185,14 @@ INSERT INTO `user` (`id`, `username`, `password`, `fullname`, `phone`, `email`, 
 (27, 'at15', '28c8edde3d61a0411511d3b1866f0636', 'Sinh viên 15', 941031282, 'at15@gmail.com', 'student'),
 (31, 'admin3', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 123546789, 'test@gmail.com', 'admin'),
 (32, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 'admin1', 12456879, 'test@gmail.com', 'admin'),
-(33, 'gv1', 'd41d8cd98f00b204e9800998ecf8427e', 'gv1', 123456789, 'gv1@gmail.com', 'teacher'),
 (34, 'at01', 'e10adc3949ba59abbe56e057f20f883e', 'sv1', 123456798, 'test@gmail.com', 'student'),
 (35, 'at02', 'c4ca4238a0b923820dcc509a6f75849b', 'sv2', 123456789, 'test@gmail.com', 'student'),
 (36, 'at03', 'c4ca4238a0b923820dcc509a6f75849b', 'sv3', 123456789, 'test@gmail.com', 'student'),
 (37, 'at04', 'c4ca4238a0b923820dcc509a6f75849b', 'sv4', 123, '', 'admin'),
-(38, 'at05', 'c4ca4238a0b923820dcc509a6f75849b', 'sv 5', 123456789, 'test@gmail.com', 'student');
+(38, 'at05', 'c4ca4238a0b923820dcc509a6f75849b', 'sv 5', 123456789, 'test@gmail.com', 'student'),
+(40, 'gv1', 'e10adc3949ba59abbe56e057f20f883e', 'gv1', 123456789, 'gv1@gmail.com', 'teacher'),
+(41, 'gv2', 'e10adc3949ba59abbe56e057f20f883e', 'gv2', 123456879, 'gv2@gmail.com', 'teacher'),
+(42, 'gv3', 'c4ca4238a0b923820dcc509a6f75849b', 'gv3', 123456789, 'gv3@gmail.com', 'teacher');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -248,13 +248,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `dinhhuong`
 --
 ALTER TABLE `dinhhuong`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `dkgiaovien`
 --
 ALTER TABLE `dkgiaovien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `dsdetai`
@@ -266,7 +266,7 @@ ALTER TABLE `dsdetai`
 -- AUTO_INCREMENT cho bảng `dsdetaisv`
 --
 ALTER TABLE `dsdetaisv`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `feedback`
@@ -284,7 +284,7 @@ ALTER TABLE `groupsv`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
