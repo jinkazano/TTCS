@@ -32,7 +32,7 @@ session_start();
                                                 <th>STT</th>
                                                 <th>Tên giáo viên</th>
                                                 <th>Nhóm</th>
-                                                <th>Tên định hướng</th>
+                                                
                                                 <th>Tên đề tài</th>
                                             </tr>
                                             <?php 
@@ -49,7 +49,7 @@ session_start();
                                                    <td><?php echo $rowq['0'] ?></td>
                                                    <td><?php echo $rowq['1'] ?></td>
                                                    <td><?php echo $rowq['2'] ?></td>
-                                                   <td><?php echo $rowq['4'] ?></td>
+                                                   
                                                    <td><?php echo $rowq['3'] ?></td>
                                                </tr>
                                                <?php 
@@ -76,11 +76,12 @@ session_start();
                                     $feed = $_POST['feed'];
                                     $giaovien = $row[1];
                                     $nhom = $row[2];
-                                    $dh = $row[4];
+                                    
                                     $detai = $row[3];
-                                    mysqli_query($con,"Insert into feedback(giaovien,nhom,dinhhuong,detai,feedback) values('$giaovien','$nhom','$dh','$detai','$feed')");
+                                    mysqli_query($con,"Insert into feedback(giaovien,nhom,detai,feedback) values('$giaovien','$nhom','$detai','$feed')");
                                     mysqli_query($con,"delete from dsdetaisv where id = '$stt'");
-                                    echo "Xóa thành công";
+                                    alert( "Xóa thành công");
+                                    replace("duyet-de-tai.php");
                                 }
                                 ?>
                             </form>

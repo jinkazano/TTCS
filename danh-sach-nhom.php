@@ -36,17 +36,14 @@ session_start();
                                     </div> -->
                                     <table class="colspan table table-hover table-inverse">
                                         <thead>
+                                            
                                             <tr>
-                                                <th rowspan="2">STT</th>
-                                                <th colspan="3">Danh sách thành viên</th>
-                                                <th rowspan="2">Thao tác</th>
-                                            </tr>
-                                            <tr>
+                                                <th >STT</th>
                                                 <th>Nhóm trưởng</th>
 
-                                                <th>Thành viên 1</th>
-
                                                 <th>Thành viên 2</th>
+
+                                                <th>Thành viên 3</th>
 
                                             </tr>
                                         </thead>
@@ -82,7 +79,7 @@ session_start();
                                                 <tr>
                                                     <td><?php echo $row1['0']; ?></td>
                                                     <td><?php echo $row1['1']; ?></td>
-                                                    <td><?php echo $row1['2']; ?></td>
+                                                    
                                                     <td><?php echo $row1['3']; ?></td>
                                                     <td><?php echo $row1['4']; ?></td>
                                                 </tr>
@@ -95,7 +92,7 @@ session_start();
                                         </tbody>
                                     </table>
                                     <nav aria-label="Page navigation example">
-                                     <ul class="pagination">
+                                     <ul class="pagination justify-content-center">
 
                                         <?php
                                         // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev

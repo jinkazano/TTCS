@@ -88,7 +88,7 @@ session_start();
                                         </tbody>
                                     </table>
                                     <nav aria-label="Page navigation example">
-                                     <ul class="pagination">
+                                     <ul class="pagination justify-content-center">
 
                                         <?php
                                         // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev

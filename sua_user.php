@@ -65,9 +65,10 @@ session_start();
                                         $sql1 = "UPDATE user SET user.username='$username1',user.fullname='$fullname',user.password='$password',user.phone = '$phone',user.email='$email',user.permission='$permission' WHERE user.id='$stt'";
                                         $check = mysqli_query($con, $sql1);
                                         if ($check) {
-                                            echo "Cập nhật thông tin thành công.";
+                                            alert("Cập nhật thông tin thành công.") ;
+                                            replace("ds-user.php");
                                         } else {
-                                            echo "Cập nhật thông tin thất bại.";
+                                            alert( "Cập nhật thông tin thất bại.");
                                         }
                                     }
                                     ?>
