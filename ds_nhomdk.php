@@ -46,10 +46,12 @@ session_start();
                                         </thead>
                                         <tbody>
                                             
-                                            <!-- //sadasdasdsad -->
+                                            <!-- // -->
                                             <?php 
+
                                             if ($permission=='teacher') {
-                                                $check = mysqli_query($con,"SELECT groupsv FROM dkgiaovien WHERE teacher='$row[3]' ");
+                                                
+                                                $check = mysqli_query($con,"SELECT * FROM groupsv WHERE teacher_registration='$row[0]' ");
                                             }
                                             if ($permission=='student') {
                                                 $check = mysqli_query($con,"SELECT id FROM groupsv WHERE idsv1='$row[1]' or idsv2='$row[1]' or idsv3='$row[1]' ");
@@ -78,8 +80,8 @@ session_start();
                                                         echo $row3[1].'<br>'.$row3[2].'<br>'.$row3[3];
                                                     } ?></td>
                                                     <td><?php $row4=mysqli_fetch_row(mysqli_query($con,"SELECT * FROM dsdetai WHERE dsdetai.nhom='$rowq[0]'"));
-                                                    if ($row4[3]=="") {
-                                                        echo "Nhóm chưa đăng kí đề tài";
+                                                    if ($row4=="") {
+                                                        echo "Nhóm chưa có đề tài được duyệt";
                                                     }else echo $row4[3];;
                                                     ?></td>
                                                 </tr>

@@ -31,14 +31,14 @@ if (isset($_SESSION['username'])) {
         <a  class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseTeacher" aria-expanded="true" aria-controls="collapseTeacher">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>
-                Dành cho giáo viên
+                Dashboard giáo viên
             </span>
         </a>
         <div id="collapseTeacher"class="collapse"
         aria-labelledby="headingTeacher"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho giáo viên:</h6>
-            <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí định hướng</a>
+            <!-- <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí định hướng</a> -->
             <a class="collapse-item" href="danh-sach-dinh-huong.php">Danh sách định hướng</a>
             <a class="collapse-item" href="danh-sach-de-tai.php">Danh sách đề tài</a>
           </div>
@@ -51,7 +51,7 @@ if (isset($_SESSION['username'])) {
         <a  class="nav-link collapsed " href="#" data-toggle="collapse" data-target="#collapseStudent" aria-expanded="true" aria-controls="collapseStudent">
             <i class="fas fa-book-reader"></i>
             <span>
-                Dành cho sinh viên
+                Dashboard sinh viên
             </span>
         </a>
         <div id="collapseStudent"class="collapse"
@@ -60,7 +60,7 @@ if (isset($_SESSION['username'])) {
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
             <a class="collapse-item" href="admin-dang-ki-nhom.php">Đăng kí nhóm</a>
             <a class="collapse-item" href="danh-sach-nhom.php">Danh sách đăng kí nhóm</a>
-            <a class="collapse-item" href="dk-detai.php.php">Đăng kí đề tài</a>
+            <!-- <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a> -->
           </div>
         </div>
     </li>

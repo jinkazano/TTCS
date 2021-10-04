@@ -18,7 +18,7 @@ session_start();
         <?php require_once('logo.php'); ?>
         <div class="main">
             <div id="wrapper">
-                <div id="sidebar">
+                <div class="sidebar bg-gradient-primary">
                     <?php require_once('menu_left.php'); ?>
                 </div>
                 <div id="content-wrapper" class="d-flex flex-column p-5">
@@ -44,7 +44,10 @@ session_start();
                                     values ('$username1','$password','$fullname','$phone','$email','$permission')";
                                     if(isset($slot)) {
                                         $check = mysqli_query($con, $sql1);
-                                        $add_slot=mysqli_query($con,"INSERT into dkgiaovien(teacher,slot) values ('$username1','$slot')");
+                                        $add_slot=mysqli_query($con,"INSERT into dkgiaovien(teacher,slot) values ('$fullname','$slot')");
+                                        $teacher_user=mysqli_fetch_array(mysqli_query($con,"SELECT * from user where username='$username1'"));
+                                        $id_update=mysqli_query($con,"UPDATE dkgiaovien set id='$teacher_user[0]'where teacher='teacher_user[3]' ");
+                                        
 
                                     }
                                     else {
@@ -54,9 +57,9 @@ session_start();
 
                                     
                                     if ($check) {
-                                        echo "Đăng kí thành công!!!";
+                                        alert("Đăng kí thành công!!!");
                                     } else {
-                                        echo "Đăng kí thất bại.";
+                                        alert("Đăng kí thất bại.") ;
                                     }
                                 }
                                 ?>
@@ -68,7 +71,7 @@ session_start();
                                     <label for="">Họ và tên:</label>
                                     <input type="text" class="form-control" name="fullname" required data-parsley-length="[1,30]">
                                     <label for="">Số điện thoại:</label>
-                                    <input type="number" class="form-control" name="phone" required data-parsley-length="[3,11]">
+                                    <input type="number" class="form-control" name="phone" required data-parsley-length="[3,13]">
                                     <label for="">Email:</label>
                                     <input type="email" class="form-control" name="email" required data-parsley-type="email">
                                     <label for="">Phân quyền:</label>
@@ -80,7 +83,7 @@ session_start();
                                     </select>
                                     <div id="hidden_div"   >
                                         <label for="">Số nhóm hướng dẫn:</label>
-                                        <input type="number" id="slot" class="form-control" name="slot"  required data-parsley-length="[1,2]">
+                                        <input type="number" id="slot" class="form-control" name="slot" value="1">
                                     </div>
                                     
 

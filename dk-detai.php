@@ -26,22 +26,23 @@ session_start();
                             <div class="card-body">
                                 <h3 class="text-center">Đăng ký đề tài</h3>
                                  <?php 
-                                $rowq = mysqli_fetch_row(mysqli_query($con, "SELECT dkgiaovien.teacher , dkgiaovien.groupsv , dinhhuong.dinhhuong1,  groupsv.id
-                                    FROM dkgiaovien 
-                                    JOIN dinhhuong ON dkgiaovien.teacher=dinhhuong.tengv
-                                    JOIN groupsv ON dkgiaovien.groupsv=groupsv.id AND groupsv.id = (SELECT id FROM groupsv WHERE idsv1='$username' OR idsv2='$username' OR idsv3 = '$username')"));
+                                $rowq = mysqli_fetch_row(mysqli_query($con, "SELECT dkgiaovien.teacher , groupsv.id , dinhhuong.dinhhuong1 
+                                    FROM dkgiaovien
+                                    JOIN groupsv ON dkgiaovien.id=groupsv.teacher_registration
+                                    JOIN dinhhuong ON dkgiaovien.teacher=dinhhuong.tengv AND groupsv.id = (SELECT id FROM groupsv WHERE idsv1='$username' OR idsv2='$username' OR idsv3 = '$username')"));
+                                
                                 $gv = $rowq['0'];
                                 $nhom = $rowq['1'];
                                 $dh1 = $rowq['2'];
                                 
                                 if (isset($_POST['dangki'])) {
                                     $detai = $_POST['detai'];
-                                    $dinhhuong = $_POST['sellist1'];
-                                    $check=mysqli_query($con, "insert into dsdetaisv(tengv,nhom,detai,dinhhuong) value('$gv','$nhom','$detai','$dinhhuong')");
+                                    
+                                    $check=mysqli_query($con, "insert into dsdetaisv(tengv,nhom,detai) value('$gv','$nhom','$detai')");
                                     if ($check) {
-                                        echo "Đăng kí thành công.";
+                                        alert("Đăng kí thành công") ;
                                     } else {
-                                        echo "Đăng kí thất bại.";
+                                        alert("Đăng kí thất bại.") ;
                                     }
                                 }
                                 if($permission=='student') {
@@ -49,7 +50,7 @@ session_start();
                                 
                                 ?> 
 
-                                <form action="" method="post">
+                                <form action="" method="post" data-parsley-validate>
 
                                     <label for="">Giáo viên hướng dẫn</label>
                                     <input type="text" class="form-control" value="<?php echo $gv ?>"readonly>
@@ -58,7 +59,7 @@ session_start();
                                     <label for="">Định hướng:</label>
                                     <textarea class="form-control" rows="4" name="dinhhuong" readonly><?php echo $dh1 ?></textarea>
                                     <label for="">Đề tài:</label>
-                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai" required data-parsley-maxlength="100"></textarea>
                                     <div class="text-center mt-3">
                                         <button class=" m-2 btn btn-success" name="dangki"><i class="far fa-edit"></i> Đăng kí</button>
                                     </div>
@@ -72,7 +73,8 @@ session_start();
                                     <input type="text" class="form-control" value="<?php echo $gv ?>">
                                     <label for="">Nhóm: </label>
                                     <input type="text" class="form-control" value="<?php echo $nhom ?>">
-                                    
+                                    <label for="">Định hướng:</label>
+                                    <textarea class="form-control" rows="4" name="dinhhuong" readonly><?php echo $dh1 ?></textarea>
                                     <label for="">Đề tài:</label>
                                     <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea>
                                     <div class="text-center mt-3">

@@ -32,7 +32,7 @@ session_start();
                                                 <th>STT</th>
                                                 <th>Tên giáo viên</th>
                                                 <th>Nhóm</th>
-                                                <th>Tên định hướng</th>
+                                                
                                                 <th>Tên đề tài</th>
                                             </tr>
                                             
@@ -109,7 +109,7 @@ session_start();
                                                    <td><?php echo $rowq['0'] ?></td>
                                                    <td><?php echo $rowq['1'] ?></td>
                                                    <td><?php echo $rowq['2'] ?></td>
-                                                   <td><?php echo $rowq['4'] ?></td>
+                                                   
                                                    <td><?php echo $rowq['3'] ?></td>
 
                                                </tr>
@@ -148,7 +148,7 @@ session_start();
                                         ?>
                                     </ul>
                                     </nav>
-                                   <button type="submit" class=" m-2 btn btn-success" name="export"><i class="far fa-edit"></i> Xuất file Excel</button>
+                                   <a  class=" m-2 btn btn-success" name="" href="xuat-de-tai-excel.php?fullname=<?php echo $fullname ?>"><i class="far fa-edit"></i> Xuất file Excel</a>
                                </form>
 
                            </div> 
