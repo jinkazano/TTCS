@@ -110,7 +110,7 @@ $rowc = mysqli_fetch_row(mysqli_query($con, "select * from feedback where nhom='
         <table>
             <tbody>
                 <tr>
-                    <td>Đề tài "<?php echo $rowc[4]; ?>" của nhóm bạn bị giáo viên hướng dẫn xóa với lý do: <?php echo $rowc[5] ?></td>
+                    <td>Đề tài "<?php echo $rowc[3]; ?>" của nhóm bạn bị giáo viên hướng dẫn xóa với lý do: <?php echo $rowc[4] ?></td>
                 </tr>
                 <tr>
                     <td>Vui lòng đăng ký lại đề tài</td>
