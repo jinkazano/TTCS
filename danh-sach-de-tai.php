@@ -14,8 +14,8 @@ session_start();
         <?php require_once('logo.php'); ?>
         <div class="main" >
             <div id="wrapper">
-                <div id="sidebar">
-                    <?php require_once('menu_left.php'); ?>
+                <div class="sidebar bg-gradient-primary">
+                    <?php require_once("menu_left.php"); ?>
                 </div>
                 <div id="content-wrapper" class="d-flex flex-column p-5">
                     <div class="status">

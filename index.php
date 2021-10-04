@@ -52,7 +52,7 @@ session_start();
             <div class="main">
                 <div id="wrapper">
                     <!-- Sidebar -->
-                    <div class="sidebar ">
+                    <div class="sidebar bg-gradient-primary">
                         <?php require_once 'menu_left.php';?>
                     </div>
                     <!-- End of Sidebar -->
