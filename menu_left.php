@@ -18,7 +18,7 @@ if (isset($_SESSION['username'])) {
   ?>
 
   <!-- Side bar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <ul class="navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <?php if ($permission == 'admin') {
