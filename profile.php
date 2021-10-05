@@ -43,23 +43,30 @@ if (isset($_SESSION['username']) == "") {
 } elseif ($permission == 'student') {
 
     $rowa = mysqli_fetch_row(mysqli_query($con, "SELECT * from groupsv where idsv1='$row[1]' or idsv2='$row[1]' or idsv3='$row[1]'"));
+    $rowd="";
+    $rowb="";
+    if($rowa!=null)
+    {
+        $rowd = mysqli_fetch_row(mysqli_query($con, "SELECT * from dkgiaovien where id='$rowa[5]'"));
+        $rowb = mysqli_fetch_row(mysqli_query($con, "SELECT * from dsdetai where nhom='$rowa[0]'"));
+    }
 
-    $rowd = mysqli_fetch_row(mysqli_query($con, "SELECT * from dkgiaovien where id='$rowa[5]'"));
+    
     $dh_nhom="";
     if ($rowd != null) {
         $dh_nhom = mysqli_fetch_row(mysqli_query($con, "SELECT dinhhuong1 from dinhhuong where tengv='$rowd[1]'"));
     }
-    $rowb = mysqli_fetch_row(mysqli_query($con, "SELECT * from dsdetai where nhom='$rowa[0]'"));
+    
 
     ?>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>Họ Tên</th>
-                <th>Số điện thoại</th>
+                <th>SĐT</th>
                 <th>Email</th>
                 <th>Nhóm</th>
-                <th>Giáo viên HD</th>
+                <th>Giáo viên</th>
                 <th>Định hướng</th>
                 <th>Đề tài</th>
             </tr>
@@ -103,7 +110,12 @@ if ($rowa != null) {
 
     </table>
     <?php
+    $rowc="";
+    if($rowa !=null)
+    {
 $rowc = mysqli_fetch_row(mysqli_query($con, "select * from feedback where nhom='$rowa[0]'"));
+}
+
 
     if ($rowc) {
         ?>
