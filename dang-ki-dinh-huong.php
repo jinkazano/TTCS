@@ -23,7 +23,7 @@ session_start();
                             <?php require_once('home_page.php') ?>
                         </div>
                         <div class="card-body">
-                            <h2 class="text-center text-uppercase">Đăng kí định hướng</h2>
+                            <h2 class="text-center text-uppercase">Đăng kí/Sửa định hướng</h2>
                             <form action="" method="post">
                                 <label for="">Định hướng: </label>
                                 <input type="text" name="dh1" size="30" required="" class="form-control">
@@ -31,8 +31,19 @@ session_start();
                                 <?php
                                 if (isset($_POST['dangki'])) {
                                     $dh1 = $_POST['dh1'];
-                                    $sql1 = "insert into dinhhuong(tengv,dinhhuong1) 
-                                    value ('$fullname','$dh1')";
+                                    $check_exist=mysqli_query($con,"SELECT * from dinhhuong where tengv='$fullname'");
+                                    if($check_exist==null) {
+                                      $sql1 = "INSERT into dinhhuong(tengv,dinhhuong1) value ('$fullname','$dh1')";
+                                    }
+                                    
+                                    else{
+                                      $sql1="UPDATE dinhhuong set dinhhuong1='$dh1' where tengv='$fullname'";
+
+                                    }
+
+                                    
+
+                                    
                                     if (mysqli_query($con, $sql1)) {
                                         echo "Đăng kí thành công";
                                     } else

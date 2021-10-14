@@ -68,13 +68,13 @@ session_start();
                                                         echo $row1[1].'<br>'.$row1[2].'<br>'.$row1[3];
                                                     } ?></td>
                                                     <?php $row2=mysqli_fetch_row(mysqli_query($con,"SELECT groupsv.id,user.fullname,user.phone,user.email FROM groupsv,user WHERE groupsv.id='$rowq[0]' AND groupsv.idsv2=user.username")); ?>
-                                                    <td><?php if ($row2[0]=="") {
+                                                    <td><?php if ($row2==null) {
                                                         echo "";
                                                     }else{
                                                         echo $row2[1].'<br>'.$row2[2].'<br>'.$row2[3];
                                                     } ?></td>
                                                     <?php $row3=mysqli_fetch_row(mysqli_query($con,"SELECT groupsv.id,user.fullname,user.phone,user.email FROM groupsv,user WHERE groupsv.id='$rowq[0]' AND groupsv.idsv3=user.username")); ?>
-                                                    <td><?php if ($row3[0]=="") {
+                                                    <td><?php if ($row3==null) {
                                                         echo "";
                                                     }else{
                                                         echo $row3[1].'<br>'.$row3[2].'<br>'.$row3[3];
