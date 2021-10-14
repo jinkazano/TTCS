@@ -41,7 +41,7 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php 
-                                            $sql_total = "select count(id) as total from dinhhuong";
+                                            $sql_total = "select count(id) as total from user";
                                                 $data = mysqli_query($con, $sql_total);
                                                 $rows = mysqli_fetch_assoc($data);
                                                 $total_records = $rows['total'];
@@ -94,7 +94,7 @@ session_start();
                                         <?php
                                         // nếu current_page > 1 và total_page > 1 mới hiển thị nút prev
                                         if ($current_page > 1 && $total_page > 1) {
-                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . ($current_page - 1) . '">Previous</a></li>';
+                                            echo '<li class="page-item"><a class="page-link" href="ds-user.php?page=' . ($current_page - 1) . '">Previous</a></li>';
                                         }
 
                                         // Lặp khoảng giữa
@@ -102,12 +102,12 @@ session_start();
                                             if ($i == $current_page) {
                                                 echo '<li class="page-item"><a class="page-link" href="#">'. $i .'</a></li>';
                                             } else {
-                                                echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . $i . '">'. $i .'</a></li>';
+                                                echo '<li class="page-item"><a class="page-link" href="ds-user.php?page=' . $i . '">'. $i .'</a></li>';
                                             }
                                         }
                                         // nếu current_page < $total_page và total_page> 1 mới hiển thị nút prev
                                         if ($current_page < $total_page && $total_page > 1) {
-                                            echo '<li class="page-item"><a class="page-link" href="danh-sach-dinh-huong.php?page=' . ($current_page + 1) . '">Next</a></li>';
+                                            echo '<li class="page-item"><a class="page-link" href="ds-user.php?page=' . ($current_page + 1) . '">Next</a></li>';
                                         }
                                             
                                             ?>

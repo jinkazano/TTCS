@@ -17,11 +17,11 @@ if (isset($_SESSION['username']) == "") {
         <thead>
           <tr>
             <th>Họ Tên</th>
-            <th>Số điện thoại</th>
+            <th>SĐT</th>
             <th>Email</th>
 
-            <th>Số nhóm có thể đăng kí tiếp</td>
-            <th>Danh sách nhóm đã đăng kí</th>
+            <th>Còn đăng kí được</td>
+            <th>Nhóm đã đăng kí</th>
             <th></th>
             </tr>
         </thead>

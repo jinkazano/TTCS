@@ -26,15 +26,15 @@ session_start();
                             <div class="card-body">
                                 <h3 class="text-uppercase text-center">Danh sách nhóm đã đăng kí</h3>
                                 <form action="" method="post">
-                                    <div class="inline">
+                                    <!-- <div class="inline">
                                         <input type="text" class="form-control" placeholder="Nhập mã sinh viên cần tìm">
                                         <button type="submit" name="search" class="ml-2 btn btn-primary">Tìm kiếm</button>
-                                    </div>
+                                    </div> -->
                                     <table class="colspan table table-hover table-inverse">
                                         <thead>
                                             <tr>
                                                 <th rowspan="2">Nhóm</th>
-                                                <th colspan="3">Danh sách thành viên</th>
+                                                
                                                 <th rowspan="2">Đề tài</th>
                                             </tr>
                                             <tr>

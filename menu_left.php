@@ -120,7 +120,9 @@ if (isset($_SESSION['username'])) {
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho giáo viên:</h6>
             <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí định hướng</a>
-            <a class="collapse-item" href="danh-sach-dinh-huong.php">Danh sách định hướng</a>
+            <a class="collapse-item" href="danh-sach-dinh-huong.php">Định hướng</a>
+            <a class="collapse-item" href="ds_nhomdk.php">Danh sách nhóm quản lí</a>
+
             <a class="collapse-item" href="danh-sach-de-tai.php">Danh sách đề tài</a>
           </div>
         </div>

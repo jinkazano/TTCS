@@ -40,7 +40,14 @@ session_start();
                                     $email = $_POST['email'];
                                     $permission = $_POST['permission'];
                                     $slot=$_POST['slot'];
-                                    $sql1 = "insert into user(username,password,fullname,phone,email,permission)
+                                    $check_distinct=mysqli_query($con,"SELECT id from user where username='$username1' or email='$email'");
+                                    
+                                    if($check_distinct!=null){
+                                        alert("User hoặc email đã tồn tại");
+
+                                    }
+                                    else {
+                                        $sql1 = "insert into user(username,password,fullname,phone,email,permission)
                                     values ('$username1','$password','$fullname','$phone','$email','$permission')";
                                     if(isset($slot)) {
                                         $check = mysqli_query($con, $sql1);
@@ -53,13 +60,17 @@ session_start();
                                     else {
                                         $check = mysqli_query($con, $sql1);
                                     }
+                                    }
+
 
 
                                     
                                     if ($check) {
                                         alert("Đăng kí thành công!!!");
+                                        replace("register.php");
                                     } else {
                                         alert("Đăng kí thất bại.") ;
+                                        replace("register.php");
                                     }
                                 }
                                 ?>
@@ -73,7 +84,7 @@ session_start();
                                     <label for="">Số điện thoại:</label>
                                     <input type="number" class="form-control" name="phone" required data-parsley-length="[3,13]">
                                     <label for="">Email:</label>
-                                    <input type="email" class="form-control" name="email" required data-parsley-type="email">
+                                    <input type="email" class="form-control" name="email" required data-parsley-type="email" data-parsley-maxlength="50">
                                     <label for="">Phân quyền:</label>
                                     <select id="permission"class="form-control" name="permission" >
                                         
@@ -83,7 +94,7 @@ session_start();
                                     </select>
                                     <div id="hidden_div"   >
                                         <label for="">Số nhóm hướng dẫn:</label>
-                                        <input type="number" id="slot" class="form-control" name="slot" value="1">
+                                        <input type="number" id="slot" class="form-control" name="slot" value="1" required data-parsley-minlength="1">
                                     </div>
                                     
 

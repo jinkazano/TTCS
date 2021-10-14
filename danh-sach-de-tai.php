@@ -39,7 +39,7 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php 
-                                             $sql_total = "select count(id) as total from dinhhuong";
+                                             $sql_total = "select count(id) as total from dsdetai";
                                              $data = mysqli_query($con, $sql_total);
                                              $rows = mysqli_fetch_assoc($data);
                                              $total_records = $rows['total'];

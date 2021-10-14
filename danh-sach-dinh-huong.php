@@ -25,13 +25,12 @@ session_start();
                                 <?php require_once('home_page.php') ?>
                             </div>
                             <div class="card-body">
+                                <h3 class="text-uppercase text-center">Danh sách định hướng</h3>
                                 <form action="" method="post">
 
                                     <table class="danhsachdinhhuong table table-hover table-inverse">
                                         <thead>
-                                            <tr>
-                                                <th colspan="5"><center>Danh sách định hướng</center></th>
-                                            </tr>
+                                            
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Tên giáo viên</th>
