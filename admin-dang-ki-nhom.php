@@ -43,35 +43,56 @@ session_start();
                                         $sv2 = $_POST['sv2'];
                                         $sv3 = $_POST['sv3'];
                                         $check=0;
+
                                         $checksv1=mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv1' or idsv2='$sv1' or idsv3='$sv1'"));
-                                        if ($checksv1[0]!='') {
+                                        if ($checksv1!=null) {
                                             $check=1;
-                                            echo "User ".$sv1." đã đăng ký nhóm ";
+                                            alert( "User ".$sv1." đã đăng ký nhóm ");
                                         }
                                         if ($sv2=='') {
                                             $checksv2=true;
                                         }else{
                                             $checksv2 = mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv2' or idsv2='$sv2' or idsv3='$sv2'"));
-                                            if ($checksv2[0]!='') {
+                                            if ($checksv2!=null) {
                                                 $check = 2;
-                                                echo "User ".$sv2." đã đăng ký nhóm ";
+                                                alert( "User ".$sv2." đã đăng ký nhóm ");
                                             }
                                         }
                                         if ($sv3=='') {
                                             $checksv3=true;
                                         }else{
                                             $checksv3 = mysqli_fetch_row(mysqli_query($con,"select id from groupsv where idsv1='$sv3' or idsv2='$sv3' or idsv3='$sv3'"));
-                                            if ($checksv3[0]!='') {
+                                            if ($checksv3!=null) {
                                                 $check = 3;
-                                                echo "User ".$sv3." đã đăng ký nhóm ";
+                                                alert("User ".$sv3." đã đăng ký nhóm ");
                                             }
                                         }
-                                        if ($check==0) {
+                                        
+                                         $check_exist = 0;
+                                        // if((mysqli_query($con,"SELECT id * from user where username='$sv1'")==null)&&($sv1!=null))
+                                        // {
+                                        // 	$check_exist++;
+                                        // 	alert("User ".$sv1." không tồn tại");
+
+                                        	
+                                        // }
+                                        // if((mysqli_query($con,"SELECT id * from user where username='$sv2'")==null)&&($sv2!=null))
+                                        // {
+                                        // 	$check_exist++;
+                                        // 	alert("User ".$sv2." không tồn tại");
+                                        // }
+                                        // if((mysqli_query($con,"SELECT id * from user where username='$sv3'")==null)&&($sv3!=null))
+                                        // {
+                                        // 	$check_exist++;
+                                        // 	alert("User ".$sv3." không tồn tại");
+                                        // }
+
+                                        if (($check==0)&&($check_exist==0)) {
                                             $sql =  mysqli_query($con,"Insert into groupsv(leader,idsv1,idsv2,idsv3) values('$sv1','$sv1','$sv2','$sv3') ");
                                             if ($sql) {
                                                 # code...
-                                                echo "Đăng ký thành công";
-                                            }else echo "Đăng ký thất bại";
+                                                alert( "Đăng ký thành công");
+                                            }else alert( "Đăng ký thất bại");
                                         }
 
                                     }
