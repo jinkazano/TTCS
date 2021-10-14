@@ -49,7 +49,7 @@ session_start();
                                     else {
                                         $sql1 = "insert into user(username,password,fullname,phone,email,permission)
                                     values ('$username1','$password','$fullname','$phone','$email','$permission')";
-                                    if(isset($slot)) {
+                                    if($permission=='teacher') {
                                         $check = mysqli_query($con, $sql1);
                                         $add_slot=mysqli_query($con,"INSERT into dkgiaovien(teacher,slot) values ('$fullname','$slot')");
                                         $teacher_user=mysqli_fetch_array(mysqli_query($con,"SELECT * from user where username='$username1'"));

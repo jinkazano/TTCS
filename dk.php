@@ -1,16 +1,34 @@
-<form method="post" action="">
-    <div>
-        <button class="btn btn-success btn-lg" name="dangky"> Đăng kí</button>
-    </div>
-    <?php
 
-if (isset($_POST['dangky'])) {
+<?php
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+function replace($msg)
+{
+    echo("<script>location.href =\"http://localhost/TTCS/$msg\";</script>");
+}
+session_start();
+if (isset($_SESSION['username'])) {
+    include 'lib/connect.php';
+    $username = $_SESSION['username'];
+    $sql      = "select * from user where username='$username'";
+    $query    = mysqli_query($con, $sql);
+    if ($query) {
+        $row = mysqli_fetch_row($query);
+        $sv  = $row['1'];
+    }
+}
+if (isset($_GET['teacher'])) {
+
 
     $user = $_SESSION['username'];
+    $teacher=$_GET['teacher'];
 
     $current_team = (mysqli_fetch_array(mysqli_query($con, "SELECT * from groupsv where leader='$user'")));
     if ($current_team['teacher_registration'] != 0) {
         alert("Nhóm của bạn đã đăng kí giáo viên rồi!");
+        replace("dk-gvhuongdan.php");
     } else {
         $current_teacher = (mysqli_fetch_array(mysqli_query($con, "SELECT *from dkgiaovien where teacher='$teacher'")));
         $current_teacher_id=$current_teacher['id'];
@@ -33,9 +51,9 @@ if (isset($_POST['dangky'])) {
 
         } else {
             alert("Thất bại");
+            replace("dk-gvhuongdan.php");
         }
     }
 
 }
 ?>
-</form>

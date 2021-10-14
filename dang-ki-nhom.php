@@ -80,10 +80,21 @@ session_start();
 
                                                 <tr>
                                                     <td><?php echo $row1['id']; ?></td>
-                                                    <td><?php echo $row1['leader']; ?></td>
+                                                    <td><?php if($row1['leader']!=null)
+                                                    {
+                                                        $string= mysqli_fetch_row(mysqli_query($con,"SELECT fullname,email from user where username='$row1[leader]'"));
+                                                        echo $string[0].'<br>'.$string[1];
+                                                    } ?></td>
                                                     
-                                                    <td><?php echo $row1['idsv2']; ?></td>
-                                                    <td><?php echo $row1['idsv3']; ?></td>
+                                                    <td><?php if($row1['idsv2']!=null) {
+                                                        $string= mysqli_fetch_row(mysqli_query($con,"SELECT fullname,email from user where username='$row1[idsv2]'"));
+                                                        echo $string[0].'<br>'.$string[1];
+                                                    } ?></td>
+                                                    <td><?php if($row1['idsv3']!=null) {
+                                                        $string= mysqli_fetch_row(mysqli_query($con,"SELECT fullname,email from user where username='$row1[idsv3]'"));
+                                                        echo $string[0].'<br>'.$string[1];
+
+                                                    } ?></td>
                                                     <td><div></div><?php 
                                                     if($row1['idsv1']==null||$row1['idsv2']==null||$row1['idsv3']==null)
                                                     {

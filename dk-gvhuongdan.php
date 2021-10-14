@@ -73,9 +73,7 @@ session_start();
                                                     <?php
                                                     if ($row2['slot'] > 0) {
                                                         ?><td>
-                                                            <?php 
-                                                            require_once('dk.php')
-                                                            ?>
+                                                            <a class="mb-2 btn btn-success" href="dk.php?teacher=<?php echo $teacher ?>">Đăng kí</a>
                                                         </td><?php
                                                     } else {
                                                         ?><td></td><?php
