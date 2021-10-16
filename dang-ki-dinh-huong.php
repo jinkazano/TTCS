@@ -26,8 +26,9 @@ session_start();
                             <h2 class="text-center text-uppercase">Đăng kí/Sửa định hướng</h2>
                             <form action="" method="post">
                                 <label for="">Định hướng: </label>
-                                <input type="text" name="dh1" size="30" required="" class="form-control">
-                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ" style="display: block; margin: 10px auto;">
+                                <textarea type="text" name="dh1" size="30" required="" class="form-control"> </textarea>
+                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ/SỬA" style="display: block; margin: 10px auto;">
+                              </textarea>
                                 <?php
                                 if (isset($_POST['dangki'])) {
                                     $dh1 = $_POST['dh1'];
@@ -47,7 +48,7 @@ session_start();
                                     if (mysqli_query($con, $sql1)) {
                                         echo "Đăng kí thành công";
                                     } else
-                                    echo "Đăng kí thất bại";
+                                    alert("Đăng kí thất bại");
                                 }
                                 ?>
 
