@@ -32,15 +32,13 @@ session_start();
                                     </div> -->
                                     <table class="colspan table table-hover table-inverse">
                                         <thead>
+                                            
                                             <tr>
-                                                <th rowspan="2">Nhóm</th>
-                                                
-                                                <th rowspan="2">Đề tài</th>
-                                            </tr>
-                                            <tr>
+                                                <th >Nhóm</th>
                                                 <th>Nhóm trưởng</th>
                                                 <th>Thành viên 1</th>
                                                 <th>Thành viên 2</th>
+                                                <th >Đề tài</th>
 
                                             </tr>
                                         </thead>

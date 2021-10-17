@@ -113,20 +113,18 @@ if ($rowa != null) {
     $rowc="";
     if($rowa !=null)
     {
-$rowc = mysqli_fetch_row(mysqli_query($con, "select * from feedback where nhom='$rowa[0]'"));
+
 }
+$rowc_sql=mysqli_query($con, "select * from feedback where nhom='$rowa[0]'");
 
-
-    if ($rowc) {
+    while ($rowc = mysqli_fetch_row($rowc_sql)) {
         ?>
         <table>
             <tbody>
                 <tr>
                     <td>Đề tài "<?php echo $rowc[3]; ?>" của nhóm bạn bị giáo viên hướng dẫn xóa với lý do: <?php echo $rowc[4] ?></td>
                 </tr>
-                <tr>
-                    <td>Vui lòng đăng ký lại đề tài</td>
-                </tr>
+                
             </tbody>
         </table>
         <?php

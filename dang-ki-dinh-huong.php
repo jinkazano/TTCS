@@ -27,7 +27,7 @@ session_start();
                             <form action="" method="post">
                                 <label for="">Định hướng: </label>
                                 <textarea type="text" name="dh1" size="30" required="" class="form-control"> </textarea>
-                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ/SỬA" style="display: block; margin: 10px auto;">
+                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ/SỬA" placeholder="" style="display: block; margin: 10px auto;">
                               </textarea>
                                 <?php
                                 if (isset($_POST['dangki'])) {

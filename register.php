@@ -40,15 +40,17 @@ session_start();
                                     $email = $_POST['email'];
                                     $permission = $_POST['permission'];
                                     $slot=$_POST['slot'];
-                                    $check_distinct=mysqli_query($con,"SELECT id from user where username='$username1' or email='$email'");
+                                    $check_distinct=mysqli_query($con,"SELECT * from user where username='$username1' or email='$email'");
+                                    $check_distinct_index =mysqli_fetch_row($check_distinct);
                                     
-                                    if($check_distinct!=null){
+                                    if($check_distinct_index!=null ){
                                         alert("User hoặc email đã tồn tại");
+                                        
 
                                     }
+                                    
                                     else {
-                                        $sql1 = "insert into user(username,password,fullname,phone,email,permission)
-                                    values ('$username1','$password','$fullname','$phone','$email','$permission')";
+                                        $sql1 = "INSERT into user(username,password,fullname,phone,email,permission)values ('$username1','$password','$fullname','$phone','$email','$permission')";
                                     if($permission=='teacher') {
                                         $check = mysqli_query($con, $sql1);
                                         $add_slot=mysqli_query($con,"INSERT into dkgiaovien(teacher,slot) values ('$fullname','$slot')");
@@ -57,22 +59,27 @@ session_start();
                                         
 
                                     }
+
+                                
+                            
                                     else {
                                         $check = mysqli_query($con, $sql1);
                                     }
+                                    
                                     }
 
 
 
                                     
-                                    if ($check) {
+                                    if (isset($check)) {
                                         alert("Đăng kí thành công!!!");
-                                        replace("register.php");
+                                          replace("register.php");
                                     } else {
                                         alert("Đăng kí thất bại.") ;
-                                        replace("register.php");
+                                          replace("register.php");
                                     }
                                 }
+                            
                                 ?>
                                 <form action="" method="post" role="form" data-parsley-validate>
                                     <label for="">Tên đăng nhập:</label>
