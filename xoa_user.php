@@ -1,4 +1,12 @@
 <?php
+function alert($msg)
+{
+    echo "<script type='text/javascript'>alert('$msg');</script>";
+}
+function replace($msg)
+{
+    echo("<script>location.href =\"http://localhost/TTCS/$msg\";</script>");
+}
 session_start();
 if (isset($_SESSION['username'])) {
     include 'lib/connect.php';
@@ -14,7 +22,8 @@ if (isset($_GET['stt'])) {
     $stt=$_GET['stt'];
     $sql = "delete from user where id = $stt";
     mysqli_query($con,$sql);
-    header("location:ds-user.php");
+    alert("Đã xóa thành công");
+    replace("location:ds-user.php");
 }
 
 ?>

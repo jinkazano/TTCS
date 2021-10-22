@@ -26,27 +26,32 @@ session_start();
                             <h2 class="text-center text-uppercase">Đăng kí/Sửa định hướng</h2>
                             <form action="" method="post">
                                 <label for="">Định hướng: </label>
-                                <textarea type="text" name="dh1" size="30" required="" class="form-control"> </textarea>
-                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ/SỬA" placeholder="" style="display: block; margin: 10px auto;">
+                                <textarea type="text" name="dh1" rows="7" required data-parsley-minleng="1" class="form-control"> </textarea>
+                                <input type="submit" name="dangki" class="btn btn-success" value="ĐĂNG KÍ/SỬA"  style="display: block; margin: 10px auto;">
                               </textarea>
                                 <?php
                                 if (isset($_POST['dangki'])) {
                                     $dh1 = $_POST['dh1'];
-                                    $check_exist=mysqli_query($con,"SELECT * from dinhhuong where tengv='$fullname'");
-                                    if($check_exist==null) {
-                                      $sql1 = "INSERT into dinhhuong(tengv,dinhhuong1) value ('$fullname','$dh1')";
+                                    
+                                    $check_dh_exist=mysqli_fetch_array(mysqli_query($con,"SELECT * from dinhhuong where tengv='$fullname'"));
+
+                                    if($check_dh_exist=="" ) {
+                                      
+                                      $sql1 = "INSERT into dinhhuong(tengv,dinhhuong1) values ('$fullname','$dh1')";
+                                      $update_dh=mysqli_query($con, $sql1);
                                     }
                                     
                                     else{
                                       $sql1="UPDATE dinhhuong set dinhhuong1='$dh1' where tengv='$fullname'";
+                                      $update_dh=mysqli_query($con, $sql1);
 
                                     }
 
                                     
 
                                     
-                                    if (mysqli_query($con, $sql1)) {
-                                        echo "Đăng kí thành công";
+                                    if ($update_dh) {
+                                        alert( "Đăng kí thành công");
                                     } else
                                     alert("Đăng kí thất bại");
                                 }

@@ -120,7 +120,7 @@ if (isset($_SESSION['username'])) {
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho giáo viên:</h6>
             <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí/sửa định hướng</a>
-            <a class="collapse-item" href="danh-sach-dinh-huong.php">Định hướng</a>
+            <a class="collapse-item" href="danh-sach-dinh-huong.php">Xem định hướng</a>
             <a class="collapse-item" href="ds_nhomdk.php">Danh sách nhóm quản lí</a>
 
             <a class="collapse-item" href="danh-sach-de-tai.php">Danh sách đề tài</a>
@@ -134,8 +134,8 @@ if (isset($_SESSION['username'])) {
     }
     if ($permission == 'student') {
         $idsv           = $_SESSION['username'];
-        $is_leader_sqli = mysqli_num_rows(mysqli_query($con, "SELECT * from groupsv where leader ='$idsv'"));
-        if ($is_leader_sqli > 0) {
+        $is_leader_sqli = mysqli_query($con, "SELECT * from groupsv where leader ='$idsv'");
+        if ($is_leader_sqli !=null) {
 
             ?>
       <!-- Nav Item - Dành cho sinh viên (nhóm trưởng) -->
@@ -152,7 +152,16 @@ if (isset($_SESSION['username'])) {
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
             <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
             <a class="collapse-item" href="dk-gvhuongdan.php">Đăng kí GV hướng dẫn</a>
-            <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a>
+            <?php 
+            $teacher_reg=mysqli_fetch_array($is_leader_sqli);
+            if($teacher_reg['teacher_registration']>0) {
+             ?>
+             <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a>
+             <?php 
+            }
+            ?>
+            
+            
           </div>
         </div>
     </li>

@@ -115,9 +115,11 @@ if ($rowa != null) {
     {
 
 }
-$rowc_sql=mysqli_query($con, "select * from feedback where nhom='$rowa[0]'");
-
-    while ($rowc = mysqli_fetch_row($rowc_sql)) {
+ $rowc_sql="";
+if($rowa!=null)
+{
+   $rowc_sql=mysqli_query($con, "select * from feedback where nhom='$rowa[0]'"); 
+   while ($rowc = mysqli_fetch_row($rowc_sql)) {
         ?>
         <table>
             <tbody>
@@ -129,6 +131,10 @@ $rowc_sql=mysqli_query($con, "select * from feedback where nhom='$rowa[0]'");
         </table>
         <?php
 }
+}
+
+    
+    
     ?>
     <?php
 } elseif ($permission == 'admin') {

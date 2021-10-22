@@ -25,18 +25,19 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <h3 class="text-center">Danh sách thành viên</h3>
+                                
                                 <div class="table-responsive">
                                     <table class="table table-hover table-inverse">
                                         <thead>
                                             <tr>
-                                                <th>STT</th>
+                                                <th>ID</th>
                                                 <th>Tài khoản</th>
                                                 
                                                 <th>Họ và Tên</th>
                                                 <th>Số điện thoại</th>
                                                 <th>Email</th>
                                                 <th>Chức vụ</th>
-                                                <th>Thao tác</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -77,7 +78,7 @@ session_start();
                                                     
                                                     <td>
                                                         <a class="mb-2 btn btn-primary" href="sua_user.php?stt=<?php echo $row1[0] ?>">Sửa</a>
-                                                        <a class="btn btn-danger" href="xoa_user.php?stt=<?php echo $row1[0] ?>">Xóa</a>
+                                                        <!-- <a class="mb-2 btn btn-danger" href="xoa_user.php?stt=<?php echo $row1[0] ?>">Xóa</a> -->
                                                     </td>
                                                 </tr>
 

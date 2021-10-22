@@ -59,7 +59,7 @@ session_start();
                                     <label for="">Định hướng:</label>
                                     <textarea class="form-control" rows="4" name="dinhhuong" readonly><?php echo $dh1 ?></textarea>
                                     <label for="">Đề tài:</label>
-                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai" required data-parsley-maxlength="100"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai" required data-parsley-length=[1,100]></textarea>
                                     <div class="text-center mt-3">
                                         <button class=" m-2 btn btn-success" name="dangki"><i class="far fa-edit"></i> Đăng kí</button>
                                     </div>
@@ -76,7 +76,7 @@ session_start();
                                     <label for="">Định hướng:</label>
                                     <textarea class="form-control" rows="4" name="dinhhuong" readonly><?php echo $dh1 ?></textarea>
                                     <label for="">Đề tài:</label>
-                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea>
+                                    <textarea class="form-control" rows="5" id="comment" placeholder="Nhập đề tài vào đây" name="detai"></textarea> 
                                     <div class="text-center mt-3">
                                         <button class=" m-2 btn btn-success" name="dangki"><i class="far fa-edit"></i> Đăng kí</button>
                                     </div>
