@@ -58,7 +58,7 @@ if (isset($_SESSION['username'])) {
         aria-labelledby="headingStudent"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
-            <a class="collapse-item" href="admin-dang-ki-nhom.php">Đăng kí nhóm</a>
+            <!-- <a class="collapse-item" href="admin-dang-ki-nhom.php">Đăng kí nhóm</a> -->
             <a class="collapse-item" href="danh-sach-nhom.php">Danh sách đăng kí nhóm</a>
             <!-- <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a> -->
           </div>
