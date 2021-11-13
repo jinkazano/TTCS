@@ -57,7 +57,7 @@ session_start();
                                                 $rows = mysqli_fetch_assoc($data);
                                                 $total_records = $rows['total'];
                                                 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-                                                $limit = 5; 
+                                                $limit = 25; 
     
                                                 // BƯỚC 4: TÍNH TOÁN TOTAL_PAGE VÀ START
                                                 // tổng số trang

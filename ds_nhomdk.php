@@ -1,4 +1,4 @@
-<?php
+    <?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -47,9 +47,12 @@ session_start();
                                             <!-- // -->
                                             <?php 
 
+
                                             if ($permission=='teacher') {
                                                 
-                                                $check = mysqli_query($con,"SELECT * FROM groupsv WHERE teacher_registration='$row[0]' ");
+                                                $check = mysqli_query($con,"SELECT * FROM groupsv 
+                                                    join dkgiaovien on dkgiaovien.id = groupsv.teacher_registration
+                                                     WHERE dkgiaovien.teacher='$row[3]' ");
                                             }
                                             if ($permission=='student') {
                                                 $check = mysqli_query($con,"SELECT id FROM groupsv WHERE idsv1='$row[1]' or idsv2='$row[1]' or idsv3='$row[1]' ");

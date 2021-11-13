@@ -85,7 +85,7 @@ session_start();
                                     <label for="">Tên đăng nhập:</label>
                                     <input type="text" class="form-control" name="username1" required data-parsley-length="[1,20]">
                                     <label for="">Mật khẩu:</label>
-                                    <input type="password" class="form-control" name="password" required data-parsley-length="[1,20]">
+                                    <input type="password" class="form-control" name="password" required data-parsley-length="[1,20]" data-parsley-pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
                                     <label for="">Họ và tên:</label>
                                     <input type="text" class="form-control" name="fullname" required data-parsley-length="[1,30]">
                                     <label for="">Số điện thoại:</label>
@@ -101,7 +101,7 @@ session_start();
                                     </select>
                                     <div id="hidden_div"   >
                                         <label for="">Số nhóm hướng dẫn:</label>
-                                        <input type="number" id="slot" class="form-control" name="slot" value="1" required data-parsley-minlength="1">
+                                        <input type="number" id="slot" class="form-control" name="slot" value="1" required data-parsley-length="[1,2]" data-parsley-min="1">
                                     </div>
                                     
 

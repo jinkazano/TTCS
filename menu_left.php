@@ -37,9 +37,10 @@ if (isset($_SESSION['username'])) {
         <div id="collapseTeacher"class="collapse"
         aria-labelledby="headingTeacher"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Dành cho giáo viên:</h6>
+            <h6 class="collapse-header">Giáo viên:</h6>
             <!-- <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí định hướng</a> -->
             <a class="collapse-item" href="danh-sach-dinh-huong.php">Danh sách định hướng</a>
+            
             <a class="collapse-item" href="danh-sach-de-tai.php">Danh sách đề tài</a>
           </div>
         </div>
@@ -57,9 +58,10 @@ if (isset($_SESSION['username'])) {
         <div id="collapseStudent"class="collapse"
         aria-labelledby="headingStudent"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Dành cho sinh viên:</h6>
+            <h6 class="collapse-header">Sinh viên:</h6>
             <!-- <a class="collapse-item" href="admin-dang-ki-nhom.php">Đăng kí nhóm</a> -->
             <a class="collapse-item" href="danh-sach-nhom.php">Danh sách đăng kí nhóm</a>
+            <a class="collapse-item" href="admin-them-nhom.php">Thêm số lượng nhóm</a>
             <!-- <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a> -->
           </div>
         </div>
@@ -121,7 +123,9 @@ if (isset($_SESSION['username'])) {
             <h6 class="collapse-header">Dành cho giáo viên:</h6>
             <a class="collapse-item" href="dang-ki-dinh-huong.php">Đăng kí/sửa định hướng</a>
             <a class="collapse-item" href="danh-sach-dinh-huong.php">Xem định hướng</a>
-            <a class="collapse-item" href="ds_nhomdk.php">Danh sách nhóm quản lí</a>
+            <a class="collapse-item" href="ds_nhomdk.php">Thông tin nhóm quản lí</a>
+            <a class="collapse-item" href="gv-dk-detai.php">Đăng kí đề tài</a>
+            <a class="collapse-item" href="duyet-de-tai.php">Duyệt đề tài</a>
 
             <a class="collapse-item" href="danh-sach-de-tai.php">Danh sách đề tài</a>
           </div>
@@ -133,9 +137,12 @@ if (isset($_SESSION['username'])) {
 
     }
     if ($permission == 'student') {
+
         $idsv           = $_SESSION['username'];
         $is_leader_sqli = mysqli_query($con, "SELECT * from groupsv where leader ='$idsv'");
-        if ($is_leader_sqli !=null) {
+        $teacher_reg=mysqli_fetch_array($is_leader_sqli);
+        if ($teacher_reg!=null) {
+
 
             ?>
       <!-- Nav Item - Dành cho sinh viên (nhóm trưởng) -->
@@ -150,10 +157,12 @@ if (isset($_SESSION['username'])) {
         aria-labelledby="headingStudent"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
+            
             <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
+            <a class="collapse-item" href="ds_nhomdk.php">Thông tin nhóm</a>
             <a class="collapse-item" href="dk-gvhuongdan.php">Đăng kí GV hướng dẫn</a>
             <?php 
-            $teacher_reg=mysqli_fetch_array($is_leader_sqli);
+            
             if($teacher_reg['teacher_registration']>0) {
              ?>
              <a class="collapse-item" href="dk-detai.php">Đăng kí đề tài</a>
@@ -183,7 +192,9 @@ if (isset($_SESSION['username'])) {
         aria-labelledby="headingStudent"data-target="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Dành cho sinh viên:</h6>
+
             <a class="collapse-item" href="dang-ki-nhom.php">Đăng kí nhóm</a>
+            <a class="collapse-item" href="ds_nhomdk.php">Thông tin nhóm </a>
 
           </div>
         </div>

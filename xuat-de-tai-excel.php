@@ -21,18 +21,27 @@ if ($_SESSION['username']) {
     $sheet->setCellValue('A' . $rowCount, 'STT');
     $sheet->setCellValue('B' . $rowCount, 'Tên giáo viên');
     $sheet->setCellValue('C' . $rowCount, 'Nhóm');
+    $sheet->setCellValue('D' . $rowCount, 'Nhóm trưởng');
+    $sheet->setCellValue('E' . $rowCount, 'Thành viên 2');
+    $sheet->setCellValue('F' . $rowCount, 'Thành viên 3');
     
-    $sheet->setCellValue('D' . $rowCount, 'Đề tài');
-    $sheet->setCellValue('E' . $rowCount, 'Điểm');
+    $sheet->setCellValue('G' . $rowCount, 'Đề tài');
+
+    
 
     while ($rowp = mysqli_fetch_array($check)) {
         $rowCount++;
         $sheet->setCellValue('A' . $rowCount, $rowp['id']);
         $sheet->setCellValue('B' . $rowCount, $rowp['tengv']);
         $sheet->setCellValue('C' . $rowCount, $rowp['nhom']);
+        $id_sv_group=$rowp['nhom'];
+        $id_sv= mysqli_fetch_array(mysqli_query($con,"SELECT * from groupsv where id='$id_sv_group'"));
+
+        $sheet->setCellValue('D' . $rowCount, $id_sv['leader']);
+        $sheet->setCellValue('E' . $rowCount, $id_sv['idsv2']);
+        $sheet->setCellValue('F' . $rowCount, $id_sv['idsv3']);
+        $sheet->setCellValue('G' . $rowCount, $rowp['detai']);
         
-        $sheet->setCellValue('D' . $rowCount, $rowp['detai']);
-        $sheet->setCellValue('E' . $rowCount, '');
     }
 
     $objWriter = new PHPExcel_Writer_Excel2007($objExcel);

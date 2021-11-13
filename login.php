@@ -13,6 +13,7 @@ function alert($msg)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Đăng nhập</title>
         <link rel="stylesheet" href="login.css">
+
     </head>
     <body>
         <?php
@@ -56,8 +57,8 @@ function alert($msg)
                     <div>
                         <input type="password" name="password" placeholder="Mật khẩu" required data-parsley-length="[1,20]" >
                     </div>
-                    <div>
-                        <input type="submit" name="login" value="Đăng nhập">
+                    <div class="w-100 flex-column">
+                        <input type="submit" name="login" value="Đăng nhập"  required="">
                     </div>
                 
                 </form>

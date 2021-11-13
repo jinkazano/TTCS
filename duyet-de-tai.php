@@ -25,6 +25,7 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <form action="" method="post">
+                                    <h3 class="text-uppercase text-center">Danh sách đề tài chưa duyệt</h3>
 
                                     <table class="table table-hover table-inverse">
                                         <thead>
@@ -34,7 +35,7 @@ session_start();
                                                 <th>Nhóm</th>
                                                 
                                                 <th>Tên đề tài</th>
-                                                <th colspan="2">Xác nhận</th>
+                                                
                                             </tr>
                                             <?php 
                                             if ($permission == 'teacher') {

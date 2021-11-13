@@ -25,7 +25,8 @@ session_start();
                             </div>
                             <div class="card-body">
                                 <form action="" method="post">
-                                    <a class="btn btn-primary" href="duyet-de-tai.php">Duyệt đề tài</a>
+                                    
+                                    <h3 class="text-uppercase text-center">Danh sách đề tài đã duyệt</h3>
                                     <table class="table table-hover table-inverse">
                                         <thead>
                                             <tr>
